@@ -1,0 +1,15 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, 'Times New Roman', serif;
+}
+
+code {
+    font-family: "Lucida Console", Monaco, 'Courier New', Courier, monospace;
+    background: #cccccc99;
+}

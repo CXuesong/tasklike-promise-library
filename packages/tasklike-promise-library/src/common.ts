@@ -7,13 +7,13 @@ export function resolvedPromise(): Promise<void> {
 
 export function delay(milliseconds: number): Promise<void> {
     if (milliseconds < 0) {
-        throw new RangeError("milliseconds (arg#1) should be a non-negative number.")
+        throw new RangeError("milliseconds (arg#1) should be a non-negative number.");
     }
     if (milliseconds === 0) {
         return _resovledPromise;
     }
     const prs = new PromiseResolutionSource();
-    setTimeout(function (prs_: PromiseResolutionSource) { prs_.tryResolve(); }, milliseconds);
+    setTimeout(() => { prs.tryResolve(); }, milliseconds);
     return prs.promise;
 }
 
@@ -31,7 +31,7 @@ export class PromiseResolutionSource<T = void> {
             this._promise = new Promise((res, rej) => {
                 this._resolve = res;
                 this._reject = rej;
-            })
+            });
         }
     }
     public get promise(): Promise<T> {

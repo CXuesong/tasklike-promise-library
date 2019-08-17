@@ -11,6 +11,7 @@
             true,
             "double"
         ],
-        "no-var-keyword": true
+        "no-var-keyword": true,
+        "semicolon": true
     }
 }
