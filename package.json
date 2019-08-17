@@ -1,24 +1,13 @@
 {
   "name": "tasklike-promise-library",
-  "version": "0.1.0",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CXuesong/tasklike-promise-library.git"
-  },
-  "keywords": [
-    "tpl",
-    "promise",
-    "cancellation"
-  ],
   "author": "CXuesong",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/CXuesong/tasklike-promise-library/issues"
-  },
-  "homepage": "https://github.com/CXuesong/tasklike-promise-library#readme"
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
