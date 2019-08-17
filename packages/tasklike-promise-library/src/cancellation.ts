@@ -15,34 +15,37 @@ export interface ICancellationToken {
 }
 
 class CancellationToken implements ICancellationToken {
-    private _cancelled: boolean = false;
-    private _cancellationPrs: PromiseResolutionSource;
-    public readonly canBeCancelled = true;
-    public constructor() {
-        this._cancellationPrs = new PromiseResolutionSource();
-    }
+    // Do not depend on promiseResolutionSource here. Actually it may depend on CancellationToken in the future.
+    private _notifyCancel: (() => void) | undefined;
+    private _cancellationPromise: Promise<void> | undefined;
     public get isCancellationRequested(): boolean {
-        return this._cancelled;
+        return !!this._cancellationPromise && !this._notifyCancel;
+    }
+    private _ensurePromiseInitialized() {
+        if (!this._cancellationPromise) {
+            this._cancellationPromise = new Promise((res, rej) => { this._notifyCancel = res; });
+        }
     }
     public __int_cancel(): void {
-        if (this._cancelled) {
-            return;
+        this._ensurePromiseInitialized();
+        if (this._notifyCancel) {
+            this._notifyCancel();
+            this._notifyCancel = undefined;
         }
-        this._cancelled = true;
-        const result = this._cancellationPrs.tryResolve();
-        console.assert(result);
     }
     public throwIfCancellationRequested(): void {
-        if (this._cancelled) {
+        if (this._cancellationPromise && !this._notifyCancel) {
             throw new PromiseCancelledError();
         }
     }
     // TODO return some sort of IDisposable.
     public subscribe(callback: () => void): void {
-        this._cancellationPrs.promise.then(callback);
+        this._ensurePromiseInitialized();
+        this._cancellationPromise!.then(callback);
     }
     public get promise(): Promise<void> {
-        return this._cancellationPrs.promise;
+        this._ensurePromiseInitialized();
+        return this._cancellationPromise!;
     }
 }
 
