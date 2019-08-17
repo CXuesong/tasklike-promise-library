@@ -12,6 +12,11 @@
             "double"
         ],
         "no-var-keyword": true,
-        "semicolon": true
+        "semicolon": true,
+        "member-access": true,
+        "member-ordering": [
+            true,
+            "fields-first"
+        ]
     }
 }
