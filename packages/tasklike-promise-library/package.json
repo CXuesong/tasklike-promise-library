@@ -1,12 +1,17 @@
 {
-  "name": "tasklike-promise-library",
-  "version": "0.1.0",
+  "name": "@cxuesong/tasklike-promise-library",
+  "version": "0.0.1",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc --build tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/CXuesong/tasklike-promise-library.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CXuesong/tasklike-promise-library.git"
+  },
   "keywords": [
     "tpl",
     "promise",
@@ -18,5 +23,9 @@
     "url": "https://github.com/CXuesong/tasklike-promise-library/issues"
   },
   "homepage": "https://github.com/CXuesong/tasklike-promise-library#readme",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {}
 }

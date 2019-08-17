@@ -1,0 +1,16 @@
+{
+    "rules": {
+        "no-duplicate-imports": true,
+        "no-duplicate-variable": true,
+        "object-literal-sort-keys": true,
+        "no-import-side-effect": true,
+        "ordered-imports": true,
+        "eofline": true,
+        "await-promise": true,
+        "quotemark": [
+            true,
+            "double"
+        ],
+        "no-var-keyword": true,
+    }
+}

@@ -5,7 +5,19 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "target": "es5",
-        "lib": ["es5", "es2015.promise", "es2015.collection", "es2015.iterable", "es2015.core", "es2017.object"],
-        "rootDir": "."
+        "lib": [
+            "es5",
+            "es2015.promise",
+            "es2015.collection",
+            "es2015.iterable",
+            "es2015.core",
+            "es2017.object",
+            "dom"
+        ],
+        "esModuleInterop": true,
+        "declaration": true,
+        "declarationMap": true,
+        // Just in case the derived project forgot to set outDir.
+        "outDir": "./dist"
     }
 }
