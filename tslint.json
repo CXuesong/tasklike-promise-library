@@ -11,6 +11,6 @@
             true,
             "double"
         ],
-        "no-var-keyword": true,
+        "no-var-keyword": true
     }
 }
