@@ -1,4 +1,6 @@
+import CopyPlugin from "copy-webpack-plugin";
 import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
 
 // tslint:disable:object-literal-sort-keys
@@ -22,7 +24,27 @@ const config: webpack.Configuration = {
     ]
   },
   resolve: {
-    extensions: [ ".tsx", ".ts", ".js" ]
+    extensions: [".tsx", ".ts", ".js"]
+  },
+  plugins: [
+    new CopyPlugin([
+      "./index.html",
+      "./index.css",
+      "./tsconfig.json"   // We need this one for XHR payload.
+    ]),
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // Must be set to true if using source-maps in production
+        terserOptions: {
+          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+        }
+      }),
+    ],
   },
   output: {
     path: path.resolve(__dirname, "dist"),

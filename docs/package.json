@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Documentation project for the repo.",
+  "main": "index.js",
+  "author": "CXuesong",
+  "license": "CC-BY-SA-4.0",
+  "private": true,
+  "scripts": {
+    "build": "pwsh -c ./build-docs.ps1",
+    "deploy": "echo \"Be sure to run `yarn run build` before executing this script.\" && pause && gh-pages -d ./dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "typedoc": "^0.15.0"
+  }
+}
