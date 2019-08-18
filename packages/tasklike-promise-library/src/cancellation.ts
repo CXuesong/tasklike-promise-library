@@ -1,4 +1,4 @@
-import { PromiseResolutionSource } from "./promiseResolutionSource";
+// Import as few ./src modules as possible.
 
 export class PromiseCancelledError extends Error {
     public readonly name: string = "PromiseCancelledError";

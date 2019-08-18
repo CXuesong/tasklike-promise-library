@@ -13,3 +13,16 @@ code {
     font-family: "Lucida Console", Monaco, 'Courier New', Courier, monospace;
     background: #cccccc99;
 }
+
+div.error {
+    width: fit-content;
+    color: #cc3333;
+    border: 1px solid #cccccc;
+}
+
+.http-response-body {
+    width: fit-content;
+    max-height: 100px;
+    overflow: auto;
+    background: #cccccc99;
+}
