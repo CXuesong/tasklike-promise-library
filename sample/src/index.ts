@@ -121,8 +121,8 @@ async function demoHttp(panel: HTMLElement, ct?: ICancellationToken) {
             appendLine(panel, "----------");
         }
     }
-    await sendAndReport({ url: "/tsconfig.json", method: "GET", timeout: 2000 });
-    await sendAndReport({ url: "/tsconfig.json", method: "POST" });
+    await sendAndReport({ url: "tsconfig.json?rand=" + Math.random(), method: "GET", timeout: 2000 });
+    await sendAndReport({ url: "tsconfig.json", method: "POST" });
 }
 
 onLoad();
