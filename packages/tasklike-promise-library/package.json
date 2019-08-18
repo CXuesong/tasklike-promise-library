@@ -24,7 +24,7 @@
     "url": "https://github.com/CXuesong/tasklike-promise-library/issues"
   },
   "homepage": "https://github.com/CXuesong/tasklike-promise-library#readme",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "typescript": "^3.5.3"
   },

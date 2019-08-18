@@ -2,6 +2,7 @@
   "name": "tasklike-promise-library",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
   "scripts": {
+    "build": "yarn workspaces run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CXuesong",

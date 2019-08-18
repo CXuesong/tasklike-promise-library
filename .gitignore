@@ -3,5 +3,8 @@ dist
 
 *.log
 *.tmp
+*.zip
+*.gz
+*.tgz
 
 _private

@@ -1,0 +1,8 @@
+/tsconfig.json
+_private
+
+*.zip
+*.gz
+*.tgz
+*.log
+*.tmp
