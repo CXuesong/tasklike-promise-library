@@ -23,11 +23,13 @@ npm install --save tasklike-promise-library
 yarn add tasklike-promise-library
 ```
 
+## Documentation
+
+[API documentation is here.](https://cxuesong.github.io/tasklike-promise-library/docs/)
+
 ## Example
 
-See the `example` folder.
-
-[Live example coming soon!]
+See the `example` folder. [Live example is here.](https://cxuesong.github.io/tasklike-promise-library/sample/)
 
 ### `delay`
 
@@ -42,7 +44,7 @@ async function doSomeWork(ct?: ICancellationToken) {
 }
 ```
 
-### awaitable XHR
+### Awaitable XHR
 
 ```typescript
 import { ICancellationToken, sendRequest } from "tasklike-promise-library";
@@ -72,3 +74,4 @@ PS /sample> cd ../packages/tasklike-promise-library
 PS /packages/tasklike-promise-library> yarn run watch
 ```
 
+[TODO: Set up unit test framework.]
