@@ -1,18 +1,11 @@
 import { ICancellationToken, PromiseCancelledError } from "./cancellation";
 import { PromiseResolutionSource } from "./promiseResolutionSource";
 
-const _resovledPromise = Promise.resolve();
-
-export function resolvedPromise(): Promise<void> {
-    return _resovledPromise;
-}
+const _yieldedPromise = Promise.resolve();
 
 export function delay(milliseconds: number, cancellationToken?: ICancellationToken): Promise<void> {
     if (milliseconds < 0) {
         throw new RangeError("milliseconds (arg#1) should be a non-negative number.");
-    }
-    if (milliseconds === 0) {
-        return _resovledPromise;
     }
     cancellationToken && cancellationToken.throwIfCancellationRequested();
     const prs = new PromiseResolutionSource();
@@ -25,4 +18,21 @@ export function delay(milliseconds: number, cancellationToken?: ICancellationTok
         });
     }
     return prs.promise;
+}
+
+export function yielded(): PromiseLike<void> {
+    return _yieldedPromise;
+}
+
+export function fromResolved<T = void>(result: T | PromiseLike<T>): Promise<T> {
+    return Promise.resolve(result);
+}
+
+export function fromRejected<T = void>(reason: any): Promise<T> {
+    return Promise.reject<T>(reason);
+}
+
+export function fromCancelled<T = void>(): Promise<T> {
+    // We want to capture the stack trace.
+    return Promise.reject<T>(new PromiseCancelledError());
 }
