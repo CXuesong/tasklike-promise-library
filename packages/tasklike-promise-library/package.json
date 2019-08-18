@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc --build .",
     "watch": "tsc --watch -p .",
+    "docs": "typedoc . --out docs/ --mode modules --excludeNotExported --excludePrivate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +17,8 @@
   "keywords": [
     "tpl",
     "promise",
-    "cancellation"
+    "cancellation",
+    "xhr"
   ],
   "author": "CXuesong",
   "license": "MIT",
@@ -26,6 +28,7 @@
   "homepage": "https://github.com/CXuesong/tasklike-promise-library#readme",
   "private": false,
   "devDependencies": {
+    "typedoc": "^0.15.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {}

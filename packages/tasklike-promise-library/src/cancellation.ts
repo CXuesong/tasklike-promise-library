@@ -19,7 +19,7 @@ export class PromiseCancelledError extends Error {
  * 
  * Cancellation notification can be propagated by passing the same instance into cancellable callee async functions.
  * 
- * @see CancellationTokenSource
+ * @see {@link CancellationTokenSource}
  */
 export interface ICancellationToken {
     /**
@@ -85,7 +85,7 @@ const cancelledToken = new CancellationToken();
 cancelledToken.__int_cancel();
 
 /**
- * Represents an owner of `CancellationToken` that can initiates the cancellation.
+ * Represents an owner of {@link ICancellationToken} that can initiates the cancellation.
  */
 export class CancellationTokenSource {
     private _cancellationToken: CancellationToken | undefined;

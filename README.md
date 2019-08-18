@@ -1,6 +1,6 @@
 
 
-![npm](https://img.shields.io/npm/v/tasklike-promise-library)
+[![npm](https://img.shields.io/npm/v/tasklike-promise-library)](https://www.npmjs.com/package/tasklike-promise-library)
 
 # tasklike-promise-library
 
@@ -45,6 +45,8 @@ async function doSomeWork(ct?: ICancellationToken) {
 ### awaitable XHR
 
 ```typescript
+import { ICancellationToken, sendRequest } from "tasklike-promise-library";
+
 async function fetchStatus(ct?: ICancellationToken) {
     const response = await sendRequest({ url: "/api/v1/status", method: "GET" }, ct);
     response.ensureSuccessfulStatusCode();
@@ -53,11 +55,9 @@ async function fetchStatus(ct?: ICancellationToken) {
 }
 ```
 
-
-
 ## Build and test
 
-You need `yarn` to build this repository properly.
+You will need `yarn` to build this repository properly.
 
 ```powershell
 # in repository root

@@ -62,7 +62,7 @@ export function fromRejected<T = void>(reason: any): Promise<T> {
 /**
  * Gets a cancelled `Promise`.
  * 
- * A cancelled `Promise` is a `Promise` rejected with `PromiseCancelledError`.
+ * A cancelled `Promise` is a `Promise` rejected with {@link PromiseCancelledError}.
  */
 export function fromCancelled<T = void>(): Promise<T> {
     // We want to capture the stack trace.
