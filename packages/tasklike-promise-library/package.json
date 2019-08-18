@@ -1,5 +1,5 @@
 {
-  "name": "@cxuesong/tasklike-promise-library",
+  "name": "tasklike-promise-library",
   "version": "0.0.1",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
   "main": "dist/index.js",
