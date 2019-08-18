@@ -1,16 +1,16 @@
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Calibri, 'Trebuchet MS', sans-serif 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, 'Times New Roman', serif;
+    font-family: Cambria, "Palatino Linotype", "Book Antiqua", Palatino, 'Times New Roman', serif;
 }
 
 code {
-    font-family: "Lucida Console", Monaco, 'Courier New', Courier, monospace;
+    font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
     background: #cccccc99;
 }
 
@@ -25,4 +25,13 @@ div.error {
     max-height: 100px;
     overflow: auto;
     background: #cccccc99;
+    padding: 2px;
+}
+
+.tip {
+    width: fit-content;
+    background:#ffffcc;
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin: 4px;
 }

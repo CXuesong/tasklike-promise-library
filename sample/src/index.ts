@@ -1,7 +1,9 @@
 import {
     CancellationTokenSource, delay, ICancellationToken, IRequestParams,
     PromiseCancelledError, sendRequest, yielded
-} from "@cxuesong/tasklike-promise-library";
+} from "tasklike-promise-library";
+// tslint:disable-next-line:no-duplicate-imports
+import * as tplAmbient from "tasklike-promise-library";
 
 function $<T extends HTMLElement>(selector: string, scope?: HTMLElement): T | null {
     if (scope) {
@@ -14,6 +16,8 @@ function onLoad() {
     $("#tpl-yielded-run")!.addEventListener("click", () => runDemo(demoYield, "#tpl-yielded-panel"));
     $("#tpl-delay-run")!.addEventListener("click", () => runDemo(demoDelay, "#tpl-delay-panel", "#tpl-delay-cancel"));
     $("#tpl-sendrequest-run")!.addEventListener("click", () => runDemo(demoHttp, "#tpl-sendrequest-panel", "#tpl-sendrequest-cancel"));
+    // Expose TPL library to the debugger console.
+    (window as unknown as { TPL: typeof tplAmbient }).TPL = tplAmbient;
 }
 
 function buildErrorPanel(error: unknown) {
