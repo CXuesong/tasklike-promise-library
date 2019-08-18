@@ -3,6 +3,12 @@ import { PromiseResolutionSource } from "./promiseResolutionSource";
 
 export type HttpHeaders = { [name: string]: string };
 
+/**
+ * Represents parameters used to make an `XMLHttpRequest`-based HTTP request.
+ * 
+ * Documentation for most of the parameters can be found on
+ * [MDN's documentation on `XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
+ */
 export interface IRequestParams {
     url: string;
     method: string;
@@ -15,6 +21,11 @@ export interface IRequestParams {
     responseType?: XMLHttpRequestResponseType;
 }
 
+/**
+ * Represents the basic trait of an HTTP response.
+ * Instances directly implementing this interface is mutable.
+ * @see IHttpResponse
+ */
 export interface IMutableHttpResponse {
     statusCode: number;
     statusText: string;
@@ -22,12 +33,23 @@ export interface IMutableHttpResponse {
     ensureSuccessfulStatusCode(): void;
 }
 
+/**
+ * Represents the basic trait of an HTTP response.
+ * This is the immutable counterpart of `IMutableHttpResponse`.
+ */
 export type IHttpResponse = Readonly<IMutableHttpResponse>;
 
+/**
+ * Represents the response of an HTTP request.
+ */
 export interface IXhrResponse extends IHttpResponse {
     readonly xhr: XMLHttpRequest;
 }
 
+/**
+ * An error raises when an HTTP request fails due to network transportation
+ * or server response.
+ */
 export class HttpRequestError extends Error {
     public readonly name: string = "HttpRequestError";
     public constructor(message?: string) {
@@ -50,6 +72,11 @@ class XhrResponse implements IXhrResponse {
     }
 }
 
+/**
+ * Send an HTTP request with `XMLHttpRequest`.
+ * @param request the request parameters.
+ * @param cancellationToken a token used to cancel the operation and abort the HTTP request.
+ */
 export function sendRequest(request: Readonly<IRequestParams>, cancellationToken?: ICancellationToken): Promise<IXhrResponse> {
     cancellationToken && cancellationToken.throwIfCancellationRequested();
     const xhr = new XMLHttpRequest();

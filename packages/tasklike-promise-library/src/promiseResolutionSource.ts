@@ -17,10 +17,17 @@ export class PromiseResolutionSource<T = void> {
             });
         }
     }
+    /** Gets the derived `Promise` controlled by the current instance. */
     public get promise(): Promise<T> {
         this._ensurePromiseInitialized();
         return this._promise!;
     }
+    /**
+     * Resolves the derived `Promise` with the specified result.
+     * @param result the resolution result, or a `PromiseLike` that can be furtherly *resolved*.
+     * @returns `true` if the derived `Promise` has just been *resolved*;
+     * otherwise it means the `Promise` has already been *settled* before.
+     */
     public tryResolve(result: T | PromiseLike<T>): boolean {
         this._ensurePromiseInitialized();
         if (this._resolve) {
@@ -30,6 +37,11 @@ export class PromiseResolutionSource<T = void> {
         }
         return false;
     }
+    /**
+     * Cancels the derived `Promise`.
+     * @returns `true` if the derived `Promise` has just been *rejected* with `PromiseCancelledError`;
+     * otherwise it means the `Promise` has already been *settled* before.
+     */
     public tryCancel(): boolean {
         this._ensurePromiseInitialized();
         if (this._reject) {
@@ -39,6 +51,12 @@ export class PromiseResolutionSource<T = void> {
         }
         return false;
     }
+    /**
+     * Rejects the derived `Promise` with the specified rason.
+     * @param reason the rejection reason, or the `Error` causing the rejection.
+     * @returns `true` if the derived `Promise` has just been *rejected*;
+     * otherwise it means the `Promise` has already been *settled* before.
+     */
     public tryReject(reason: any): boolean {
         this._ensurePromiseInitialized();
         if (this._reject) {
