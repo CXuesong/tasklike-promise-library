@@ -1,6 +1,7 @@
 import { PromiseResolutionSource } from "./promiseResolutionSource";
 
 export class PromiseCancelledError extends Error {
+    public readonly name: string = "PromiseCancelledError";
     public constructor(message?: string) {
         super(message == null ? "Promise execution has been cancelled." : message);
         Object.setPrototypeOf(this, PromiseCancelledError.prototype);

@@ -20,7 +20,7 @@ export function delay(milliseconds: number, cancellationToken?: ICancellationTok
     const id = setTimeout(() => { prs.tryResolve(); }, milliseconds);
     if (cancellationToken) {
         cancellationToken.subscribe(() => {
-            window.clearTimeout(id);
+            clearTimeout(id);
             prs.tryReject(new PromiseCancelledError());
         });
     }

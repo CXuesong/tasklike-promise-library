@@ -1,3 +1,4 @@
+import { PromiseCancelledError } from "./cancellation";
 
 /**
  * Resolves or rejects a `Promise` from outside of it.
@@ -24,6 +25,15 @@ export class PromiseResolutionSource<T = void> {
         this._ensurePromiseInitialized();
         if (this._resolve) {
             this._resolve(result);
+            this._resolve = this._reject = undefined;
+            return true;
+        }
+        return false;
+    }
+    public tryCancel(): boolean {
+        this._ensurePromiseInitialized();
+        if (this._reject) {
+            this._reject(new PromiseCancelledError());
             this._resolve = this._reject = undefined;
             return true;
         }
