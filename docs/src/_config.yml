@@ -1,0 +1,3 @@
+# https://help.github.com/en/articles/files-that-start-with-an-underscore-are-missing
+# https://jekyllrb.com/docs/configuration/options/
+include: [".htaccess", "*.htm", "*.html"]
