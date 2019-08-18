@@ -1,4 +1,7 @@
-import { CancellationTokenSource, delay, ICancellationToken, IRequestParams, sendRequest } from "@cxuesong/tasklike-promise-library";
+import {
+    CancellationTokenSource, delay, ICancellationToken, IRequestParams,
+    PromiseCancelledError, sendRequest, yielded
+} from "@cxuesong/tasklike-promise-library";
 
 function $<T extends HTMLElement>(selector: string, scope?: HTMLElement): T | null {
     if (scope) {
@@ -8,6 +11,7 @@ function $<T extends HTMLElement>(selector: string, scope?: HTMLElement): T | nu
 }
 
 function onLoad() {
+    $("#tpl-yielded-run")!.addEventListener("click", () => runDemo(demoYield, "#tpl-yielded-panel"));
     $("#tpl-delay-run")!.addEventListener("click", () => runDemo(demoDelay, "#tpl-delay-panel", "#tpl-delay-cancel"));
     $("#tpl-sendrequest-run")!.addEventListener("click", () => runDemo(demoHttp, "#tpl-sendrequest-panel", "#tpl-sendrequest-cancel"));
 }
@@ -27,18 +31,20 @@ function appendLine(container: HTMLElement, content: string): HTMLElement {
 }
 
 async function runDemo(
-    demoFunc: (panel: HTMLElement, cancellationToken: ICancellationToken) => void | Promise<void>,
+    demoFunc: (panel: HTMLElement, cancellationToken?: ICancellationToken) => void | Promise<void>,
     panelSelector: string,
-    cancellationButtonSelector: string) {
+    cancellationButtonSelector?: string) {
     const cts = new CancellationTokenSource();
     const onCancel = () => { cts.cancel(); };
     const panel = $(panelSelector)!;
-    const cancelButton = $<HTMLButtonElement>(cancellationButtonSelector)!;
-    cancelButton.addEventListener("click", onCancel);
-    cancelButton.disabled = false;
+    const cancelButton = cancellationButtonSelector ? $<HTMLButtonElement>(cancellationButtonSelector) : null;
+    if (cancelButton) {
+        cancelButton.addEventListener("click", onCancel);
+        cancelButton.disabled = false;
+    }
     panel.innerText = "";
     try {
-        const result = demoFunc(panel, cts.token);
+        const result = demoFunc(panel, cancelButton ? cts.token : undefined);
         if (result) {
             await result;
         }
@@ -46,31 +52,47 @@ async function runDemo(
     catch (error) {
         panel.appendChild(buildErrorPanel(error));
     } finally {
-        cancelButton.removeEventListener("click", onCancel);
-        cancelButton.disabled = true;
+        if (cancelButton) {
+            cancelButton.removeEventListener("click", onCancel);
+            cancelButton.disabled = true;
+        }
     }
 }
 
-async function demoDelay(panel: HTMLElement, ct: ICancellationToken) {
-    panel.innerText = "Delay 0ms (Yield).";
-    await delay(0, ct);
-    panel.innerText += " Finished.\n";
-    panel.innerText += "Delay 500ms.";
-    await delay(500, ct);
-    panel.innerText += " Finished.\n";
-    panel.innerText += "Delay 1s.";
-    await delay(1000, ct);
-    panel.innerText += " Finished.\n";
-    panel.innerText += "Delay 2s.";
-    await delay(2000, ct);
-    panel.innerText += " Finished.\n";
-    panel.innerText += "Delay 3s.";
-    await delay(3000, ct);
-    panel.innerText += " Finished.\n";
-    panel.innerText += "----------";
+function demoYield(panel: HTMLElement) {
+    async function myAsyncFunction() {
+        appendLine(panel, "Callee: Do some work synchronously in myAsyncFunction…");
+        appendLine(panel, "Callee: myAsyncFunction is to yield…");
+        await yielded();
+        appendLine(panel, "Callee: back from yielded state…");
+        appendLine(panel, "Callee: exiting.");
+    }
+    appendLine(panel, "Caller: Call myAsyncFunction.");
+    myAsyncFunction();
+    appendLine(panel, "Caller: We decide don't await for myAsyncFunction.");
+    appendLine(panel, "Caller: exiting.");
 }
 
-async function demoHttp(panel: HTMLElement, ct: ICancellationToken) {
+async function demoDelay(panel: HTMLElement, ct?: ICancellationToken) {
+    let lastLine = appendLine(panel, "Delay 0ms (Yield).");
+    await delay(0, ct);
+    lastLine.innerText += " Finished.";
+    lastLine = appendLine(panel, "Delay 500ms.");
+    await delay(500, ct);
+    lastLine.innerText += " Finished.";
+    lastLine = appendLine(panel, "Delay 1s.");
+    await delay(1000, ct);
+    lastLine.innerText += " Finished.";
+    lastLine = appendLine(panel, "Delay 2s.");
+    await delay(2000, ct);
+    lastLine.innerText += " Finished.";
+    lastLine = appendLine(panel, "Delay 3s.");
+    await delay(3000, ct);
+    lastLine.innerText += " Finished.";
+    appendLine(panel, "----------");
+}
+
+async function demoHttp(panel: HTMLElement, ct?: ICancellationToken) {
     async function sendAndReport(request: IRequestParams) {
         let lastLine = appendLine(panel, `${request.method} request to ${request.url}…`);
         try {
@@ -85,12 +107,17 @@ async function demoHttp(panel: HTMLElement, ct: ICancellationToken) {
             response.ensureSuccessfulStatusCode();
             lastLine.innerText += " Successful.";
         } catch (error) {
+            if (error instanceof PromiseCancelledError) {
+                console.assert(ct && ct.isCancellationRequested);
+                // If ct is cancelled, we won't continue the demo
+                throw error;
+            }
             panel.appendChild(buildErrorPanel(error));
         } finally {
             appendLine(panel, "----------");
         }
     }
-    await sendAndReport({ url: "/tsconfig.json", method: "GET" });
+    await sendAndReport({ url: "/tsconfig.json", method: "GET", timeout: 2000 });
     await sendAndReport({ url: "/tsconfig.json", method: "POST" });
 }
 
