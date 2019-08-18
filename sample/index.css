@@ -1,0 +1,37 @@
+body {
+    font-family: Calibri, 'Trebuchet MS', sans-serif 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: Cambria, "Palatino Linotype", "Book Antiqua", Palatino, 'Times New Roman', serif;
+}
+
+code {
+    font-family: Consolas, Monaco, 'Courier New', Courier, monospace;
+    background: #cccccc99;
+}
+
+div.error {
+    width: fit-content;
+    color: #cc3333;
+    border: 1px solid #cccccc;
+}
+
+.http-response-body {
+    width: fit-content;
+    max-height: 100px;
+    overflow: auto;
+    background: #cccccc99;
+    padding: 2px;
+}
+
+.tip {
+    width: fit-content;
+    background:#ffffcc;
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin: 4px;
+}
