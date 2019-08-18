@@ -78,7 +78,7 @@ function demoYield(panel: HTMLElement) {
 }
 
 async function demoDelay(panel: HTMLElement, ct?: ICancellationToken) {
-    let lastLine = appendLine(panel, "Delay 0ms (Yield).");
+    let lastLine = appendLine(panel, "Delay 0ms (SetTimeout(0) + yielded).");
     await delay(0, ct);
     lastLine.innerText += " Finished.";
     lastLine = appendLine(panel, "Delay 500ms.");
