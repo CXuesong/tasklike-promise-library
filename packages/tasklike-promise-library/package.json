@@ -1,6 +1,6 @@
 {
   "name": "tasklike-promise-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
