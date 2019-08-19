@@ -74,4 +74,4 @@ PS /sample> cd ../packages/tasklike-promise-library
 PS /packages/tasklike-promise-library> yarn run watch
 ```
 
-[TODO: Set up unit test framework.]
+*[TODO: Set up unit test framework.]*
