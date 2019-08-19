@@ -74,6 +74,23 @@
 					</div>
 					<p>Cancellation notification can be propagated by passing the same instance into cancellable callee async functions.</p>
 					<dl class="tsd-comment-tags">
+						<dt>remarks</dt>
+						<dd><p>Like the concept of &quot;Task cooperative cancellation&quot; introduced in .NET Framework,
+								when the async function implementation wants to support cancellation, it should accept an
+							extra optional parameter of type <a href="_cancellation_.icancellationtoken.html">ICancellationToken</a>.</p>
+							<p>In your function implementation, you should do at least one of the following</p>
+							<ul>
+								<li>Check for cancellation with <a href="_cancellation_.icancellationtoken.html#iscancellationrequested">ICancellationToken.isCancellationRequested</a> or <a href="_cancellation_.icancellationtoken.html#throwifcancellationrequested">ICancellationToken.throwIfCancellationRequested</a>;</li>
+								<li>Pass the cancellation token into the callee functions that supports cancellation with <a href="_cancellation_.icancellationtoken.html">ICancellationToken</a>;</li>
+								<li>Subscribe for the cancellation event with <a href="_cancellation_.icancellationtoken.html#subscribe">ICancellationToken.subscribe</a>.</li>
+							</ul>
+							<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomeWork</span>(<span class="hljs-params">ct?: ICancellationToken</span>) </span>{
+  ct.throwIfCancellationRequested();
+  <span class="hljs-comment">// do something</span>
+  <span class="hljs-keyword">await</span> delay(<span class="hljs-number">1000</span>, ct);
+  <span class="hljs-comment">// do something else</span>
+}</code></pre>
+						</dd>
 						<dt>see</dt>
 						<dd><p><a href="../classes/_cancellation_.cancellationtokensource.html">CancellationTokenSource</a></p>
 						</dd>
@@ -117,15 +134,22 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Cancellation<wbr>Requested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/49f6b93/packages/tasklike-promise-library/src/cancellation.ts#L31">cancellation.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L59">cancellation.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Whether the token owner has requested for cancellation.</p>
 						</div>
-						<p>Note that if this field returns <code>true</code>,
-						the <code>subscribe</code> callbacks are not guaranteed to have (all) executed.</p>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>Note that if this field returns <code>true</code>,
+								the <code>subscribe</code> callbacks are not guaranteed to have (all) executed.</p>
+							</dd>
+							<dt>see</dt>
+							<dd><p><a href="_cancellation_.icancellationtoken.html#throwifcancellationrequested">ICancellationToken.throwIfCancellationRequested</a></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -134,7 +158,7 @@
 					<div class="tsd-signature tsd-kind-icon">promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/49f6b93/packages/tasklike-promise-library/src/cancellation.ts#L35">cancellation.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L63">cancellation.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,15 +180,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/49f6b93/packages/tasklike-promise-library/src/cancellation.ts#L46">cancellation.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L80">cancellation.ts:80</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds a callback function that is called when token owner has requested for cancellation.</p>
 								</div>
-								<p>Note: if the cancellation token has already been cancelled when calling this function,
-								the callback is still guaranteed to be executed asynchronously.</p>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>if the cancellation token has already been cancelled when calling this function,
+										the callback is still guaranteed to be executed asynchronously.</p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>In future version, this function should return a token for caller to cancel the subscription.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -198,13 +229,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/49f6b93/packages/tasklike-promise-library/src/cancellation.ts#L39">cancellation.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L69">cancellation.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Throws a <code>PromiseCancelledError</code> if <code>isCancellationRequested</code> is <code>true</code>.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="_cancellation_.icancellationtoken.html#iscancellationrequested">ICancellationToken.isCancellationRequested</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
