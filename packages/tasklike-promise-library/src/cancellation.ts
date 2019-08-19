@@ -1,10 +1,16 @@
 // Import as few ./src modules as possible.
+/**
+ * This module contains the infrastructure for cooperative `Promise` cancellation.
+ * 
+ * @see {@link ICancellationToken}
+ */
 
 /**
  * An error that raises when the current promise has been rejected due to cancellation.
  * 
+ * @remarks
  * ES6 `Promise` does not have cancellation support,
- * so TPL uses `reject` with `PromiseCancelledError` to indicate a cancelled `Promise`.
+ * so TPL uses `reject` with {@link PromiseCancelledError} to indicate a cancelled `Promise`.
  */
 export class PromiseCancelledError extends Error {
     public readonly name: string = "PromiseCancelledError";
@@ -19,14 +25,36 @@ export class PromiseCancelledError extends Error {
  * 
  * Cancellation notification can be propagated by passing the same instance into cancellable callee async functions.
  * 
+ * @remarks
+ * Like the concept of "Task cooperative cancellation" introduced in .NET Framework,
+ * when the async function implementation wants to support cancellation, it should accept an
+ * extra optional parameter of type {@link ICancellationToken}.
+ * 
+ * In your function implementation, you should do at least one of the following
+ * 
+ * * Check for cancellation with {@link ICancellationToken.isCancellationRequested} or {@link ICancellationToken.throwIfCancellationRequested};
+ * * Pass the cancellation token into the callee functions that supports cancellation with {@link ICancellationToken};
+ * * Subscribe for the cancellation event with {@link ICancellationToken.subscribe}.
+ * 
+ * ```ts
+ * async function doSomeWork(ct?: ICancellationToken) {
+    *   ct.throwIfCancellationRequested();
+    *   // do something
+    *   await delay(1000, ct);
+    *   // do something else
+    * }
+    * ```
  * @see {@link CancellationTokenSource}
  */
 export interface ICancellationToken {
     /**
      * Whether the token owner has requested for cancellation.
      * 
+     * @remarks
      * Note that if this field returns `true`,
      * the `subscribe` callbacks are not guaranteed to have (all) executed.
+     * 
+     * @see {@link ICancellationToken.throwIfCancellationRequested}
     */
     readonly isCancellationRequested: boolean;
     /**
@@ -35,13 +63,19 @@ export interface ICancellationToken {
     readonly promise: Promise<void>;
     /**
      * Throws a `PromiseCancelledError` if `isCancellationRequested` is `true`.
+     * 
+     * @see {@link ICancellationToken.isCancellationRequested}
      */
     throwIfCancellationRequested(): void;
     /**
      * Adds a callback function that is called when token owner has requested for cancellation.
      * 
-     * Note: if the cancellation token has already been cancelled when calling this function,
+     * @remarks
+     * if the cancellation token has already been cancelled when calling this function,
      * the callback is still guaranteed to be executed asynchronously.
+     * 
+     * @todo
+     * In future version, this function should return a token for caller to cancel the subscription.
      */
     subscribe(callback: () => void): void;
 }

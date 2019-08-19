@@ -6,9 +6,9 @@
 
 A .NET-Task-like Promise extension library for JavaScript. It relieves some of the pain caused by the feature gap of current [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) infrastructure in a .NET Task Parallel Library fashion, such as
 
-* `Promise` cooperative cancellation with `ICancellationToken`.
+* `Promise` [cooperative cancellation](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation) with `ICancellationToken`.
 * `Promise` that resolves after certain period of time (`delay`).
-* `Promise` that can be resolved/rejected/cancelled from outside (`PromiseResolutionSource`).
+* `Promise` that can be resolved/rejected/cancelled from outside, somewhat like `Deferred`  or `$.Deferred` (`PromiseResolutionSource`).
 * Some cancellable asynchronous operations, such as asynchronous XHR (`sendRequest`).
 
 Please note that this library depends on ES6 `Promise` (e.g. constructor, `Promise.resolve`, `Promise.reject`) to work, and we does not provide `Promise` polyfill here. If you need such thing, please get yourself a polyfill first. ([`core-js`](https://github.com/zloirock/core-js) is a nice one.)
@@ -59,13 +59,13 @@ async function fetchStatus(ct?: ICancellationToken) {
 
 ## Build and test
 
-You will need `yarn` to build this repository properly.
+You will need `yarn` to build this repository properly. You will need PowerShell Core if you want to build the documentation.
 
 ```powershell
 # in repository root
 PS /> yarn install
 # build repository
-PS /> yarn build
+PS /> yarn run build
 PS /> cd sample
 # starts a sample HTTP page on localhost
 PS /sample> yarn run start

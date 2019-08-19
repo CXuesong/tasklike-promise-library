@@ -7,7 +7,7 @@ const _yieldedPromise = Promise.resolve();
  * Gets a `Promise` that resolves after the specified time of delay.
  * @param milliseconds non-negative time in milliseconds to wait before the returned `Promise` resolves.
  * @param cancellationToken a token used to cancel the returned `Promise`.
- * @see yielded
+ * @see {@link yielded}
  */
 export function delay(milliseconds: number, cancellationToken?: ICancellationToken): Promise<void> {
     if (milliseconds < 0) {
@@ -35,7 +35,7 @@ export function delay(milliseconds: number, cancellationToken?: ICancellationTok
  * resolve the returned `Promise` in a `setTimeout` callback, even if the delay time is `0`.
  * This will cause `Promise` returned by `delay` be *resolved* in marcoTask queue on some execution engine.
  * 
- * @see delay
+ * @see {@link delay}
  */
 export function yielded(): PromiseLike<void> {
     return _yieldedPromise;
