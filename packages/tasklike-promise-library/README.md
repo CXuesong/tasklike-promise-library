@@ -1,6 +1,6 @@
 
 
-[![npm](https://img.shields.io/npm/v/tasklike-promise-library)](https://www.npmjs.com/package/tasklike-promise-library)
+[![npm](https://img.shields.io/npm/v/tasklike-promise-library)](https://www.npmjs.com/package/tasklike-promise-library)  [![Github issues](https://img.shields.io/github/issues-raw/CXuesong/tasklike-promise-library)](https://github.com/CXuesong/tasklike-promise-library/issues)  [![Github](https://img.shields.io/github/stars/CXuesong/tasklike-promise-library?style=social)](https://github.com/CXuesong/tasklike-promise-library)
 
 # tasklike-promise-library
 
@@ -9,7 +9,7 @@ A .NET-Task-like Promise extension library for JavaScript. It relieves some of t
 * `Promise` [cooperative cancellation](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation) with `ICancellationToken`.
 * `Promise` that resolves after certain period of time (`delay`).
 * `Promise` that can be resolved/rejected/cancelled from outside, somewhat like `Deferred`  or `$.Deferred` (`PromiseResolutionSource`).
-* Some cancellable asynchronous operations, such as asynchronous XHR (`sendRequest`).
+* Some cancellable & awaitable wrappers for asynchronous callbacks, such as asynchronous XHR (`sendRequest`), RAF([`requestAnimationFrameAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestanimationframeasync)), idle callback([]`requestIdleCallbackAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestidlecallbackasync)).
 
 Please note that this library depends on ES6 `Promise` (e.g. constructor, `Promise.resolve`, `Promise.reject`) to work, and we does not provide `Promise` polyfill here. If you need such thing, please get yourself a polyfill first. ([`core-js`](https://github.com/zloirock/core-js) is a nice one.)
 
@@ -25,13 +25,15 @@ yarn add tasklike-promise-library
 
 ## Documentation
 
-[API documentation is here.](https://cxuesong.github.io/tasklike-promise-library/docs/)
+[Full API documentation is here.](https://cxuesong.github.io/tasklike-promise-library/docs/)
 
 ## Example
 
-See the `example` folder. [Live example is here.](https://cxuesong.github.io/tasklike-promise-library/sample/)
+The following is a quick demonstration of use cases. For a full typescript example, see the `example` folder. [Live example is here.](https://cxuesong.github.io/tasklike-promise-library/sample/)
 
 ### `delay`
+
+See [`common` module](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_common_.html).
 
 ```typescript
 import { delay, ICancellationToken } from "tasklike-promise-library";
@@ -46,6 +48,8 @@ async function doSomeWork(ct?: ICancellationToken) {
 
 ### Awaitable XHR
 
+See [`http` module](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_http_.html).
+
 ```typescript
 import { ICancellationToken, sendRequest } from "tasklike-promise-library";
 
@@ -57,7 +61,11 @@ async function fetchStatus(ct?: ICancellationToken) {
 }
 ```
 
-### Awaitable `setTimeout`/`requestAnimationFrame`/`requestIdleCallback`
+### Awaitable `setTimeout`/`requestAnimationFrame`/`requestIdleCallback` with callback context
+
+See [`delayedcallbacks` module](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html).
+
+The notable benefit is that you can now write the animation in a `while` loop inside the same async function, and use `await` to switch context.
 
 ```typescript
 import { ICancellationToken, requestAnimationFrameAsync } from "tasklike-promise-library";
