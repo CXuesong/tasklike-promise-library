@@ -1,5 +1,11 @@
+/**
+ * @module
+ * Contains functions for awaitable HTTP request.
+ */
+
+/** */
+import { IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "./primitives";
 import { ICancellationToken, PromiseCancelledError } from "./primitives/cancellation";
-import { PromiseResolutionSource } from "./primitives/promiseResolutionSource";
 
 export type HttpHeaders = { [name: string]: string };
 
@@ -76,11 +82,16 @@ class XhrResponse implements IXhrResponse {
  * Send an HTTP request with `XMLHttpRequest`.
  * @param request the request parameters.
  * @param cancellationToken a token used to cancel the operation and abort the HTTP request.
+ * @returns a `PromiseLike` that resolves inside `XMLHttpRequest` callback.
  */
-export function sendRequest(request: Readonly<IRequestParams>, cancellationToken?: ICancellationToken): Promise<IXhrResponse> {
+export function sendRequest(
+    request: Readonly<IRequestParams>,
+    cancellationToken?: ICancellationToken
+): IConfigurablePromiseLike<IXhrResponse> {
     cancellationToken && cancellationToken.throwIfCancellationRequested();
     const xhr = new XMLHttpRequest();
-    const prs = new PromiseResolutionSource<Readonly<IXhrResponse>>();
+    const plrs = new PromiseLikeResolutionSource<Readonly<IXhrResponse>>();
+    let cancellationSubscription: undefined | IDisposable;
     if (request.username != null || request.password != null) {
         xhr.open(request.method, request.url, true, request.username, request.password);
     } else {
@@ -105,20 +116,22 @@ export function sendRequest(request: Readonly<IRequestParams>, cancellationToken
     }
     xhr.onload = () => {
         console.assert(xhr.readyState == 4);    // DONE
-        prs.tryResolve(new XhrResponse(xhr));
+        cancellationSubscription && cancellationSubscription.dispose();
+        plrs.tryResolve(new XhrResponse(xhr));
     };
     xhr.onerror = () => {
-        prs.tryReject(new HttpRequestError("An error occurred while sending the HTTP request."));
+        cancellationSubscription && cancellationSubscription.dispose();
+        plrs.tryReject(new HttpRequestError("An error occurred while sending the HTTP request."));
     };
     xhr.ontimeout = () => {
-        prs.tryReject(new PromiseCancelledError("HTTP request timeout has reached."));
+        cancellationSubscription && cancellationSubscription.dispose();
+        plrs.tryReject(new PromiseCancelledError("HTTP request timeout has reached."));
     };
-    // TODO We need unsubscribe this when Promise resolved.
-    cancellationToken && cancellationToken.subscribe(() => {
-        if (prs.tryCancel()) {
+    cancellationSubscription = cancellationToken && cancellationToken.subscribe(() => {
+        if (plrs.tryCancel()) {
             xhr.abort();
         }
     });
     xhr.send(request.body);
-    return prs.promise;
+    return plrs.promiseLike;
 }

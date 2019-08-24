@@ -9,6 +9,9 @@ export interface IConfigurablePromiseLike<T> extends PromiseLike<T> {
     /**
      * Gets a `PromiseLike` that ensures the {@link PromiseLike.then} callbacks
      * are executed asynchronously.
+     * 
+     * @remarks executing the callbacks asynchronsouly may let lose the current execution context,
+     * such as going out of an event handler, or an `requestAnimationFrame` callback.
      */
     forceAsync(): PromiseLike<T>;
 }
@@ -20,7 +23,7 @@ export interface IConfigurablePromiseLike<T> extends PromiseLike<T> {
  * in the way that it ensures when {@link tryResolve}, {@link tryCancel}, or {@link tryReject}
  * is called, the continuation callbacks associated with `PromiseLike` are executed *synchronously*.
  * However, downstream consumers are still able to let their continuation callbacks execute asynchronously.
- * See `PromiseLike` for more information.
+ * See {@link IConfigurablePromiseLike} for more information.
  * 
  * This class is similar to `Deferred` but it explicitly separates
  * the promise and its control side into two different objects.
@@ -40,7 +43,7 @@ export class PromiseLikeResolutionSource<T = void> {
         return this._promiseLike!;
     }
     /**
-     * Resolves the derived `PromiseLike` with the specified result.
+     * Synchronously resolves the derived `PromiseLike` with the specified result.
      * @param result the resolution result, or a `PromiseLike` that can be furtherly *resolved*.
      * @returns `true` if the derived `PromiseLike` has just been *resolved*;
      * otherwise it means the `PromiseLike` has already been *settled* before.
@@ -54,7 +57,7 @@ export class PromiseLikeResolutionSource<T = void> {
         return true;
     }
     /**
-     * Cancels the derived `PromiseLike`.
+     * Synchronously cancels the derived `PromiseLike`.
      * @returns `true` if the derived `PromiseLike` has just been *rejected* with `PromiseCancelledError`;
      * otherwise it means the `PromiseLike` has already been *settled* before.
      */
@@ -67,7 +70,7 @@ export class PromiseLikeResolutionSource<T = void> {
         return true;
     }
     /**
-     * Rejects the derived `PromiseLike` with the specified rason.
+     * Synchronously rejects the derived `PromiseLike` with the specified rason.
      * @param reason the rejection reason, or the `Error` causing the rejection.
      * @returns `true` if the derived `PromiseLike` has just been *rejected*;
      * otherwise it means the `PromiseLike` has already been *settled* before.
