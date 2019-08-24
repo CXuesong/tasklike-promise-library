@@ -1,6 +1,8 @@
 /**
  * @module
  * Contains functions for awaitable HTTP request.
+ * 
+ * @see {@link sendRequest}
  */
 
 /** */
@@ -79,7 +81,7 @@ class XhrResponse implements IXhrResponse {
 }
 
 /**
- * Send an HTTP request with `XMLHttpRequest`.
+ * Sends an HTTP request with `XMLHttpRequest`.
  * @param request the request parameters.
  * @param cancellationToken a token used to cancel the operation and abort the HTTP request.
  * @returns a `PromiseLike` that resolves inside `XMLHttpRequest` callback.

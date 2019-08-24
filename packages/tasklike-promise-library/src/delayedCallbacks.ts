@@ -77,10 +77,18 @@ export function requestAnimationFrameAsync(cancellationToken?: ICancellationToke
     return plrs.promiseLike;
 }
 
+/**
+ * Options for `window.requestIdleCallback`.
+ * See [`window.requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback#Parameters) for more information.
+ */
 export interface IRequestIdleCallbackOptions {
     timeout?: number;
 }
 
+/**
+ * Callback argument for `window.requestIdleCallback`.
+ * See [`IdleDeadline`](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) for more information.
+ */
 export interface IRequestIdleCallbackDeadline {
     didTimeout: boolean;
     timeRemaining(): number;

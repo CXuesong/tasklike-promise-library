@@ -74,9 +74,11 @@ export interface ICancellationToken {
     /**
      * Adds a callback function that is called when token owner has requested for cancellation.
      * 
+     * @param callback the function to be called *asynchronously* when the cancellation has been requested.
+     * @returns an {@link IDisposable} used to unsubscribe the cancellation callback.
      * @remarks
      * if the cancellation token has already been cancelled when calling this function,
-     * the callback is still guaranteed to be executed asynchronously.
+     * the callback is still guaranteed to be executed *asynchronously*.
      */
     subscribe(callback: () => void): IDisposable;
 }
