@@ -9,7 +9,7 @@ A .NET-Task-like Promise extension library for JavaScript. It relieves some of t
 * `Promise` [cooperative cancellation](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation) with `ICancellationToken`.
 * `Promise` that resolves after certain period of time (`delay`).
 * `Promise` that can be resolved/rejected/cancelled from outside, somewhat like `Deferred`  or `$.Deferred` (`PromiseResolutionSource`).
-* Some cancellable & awaitable wrappers for asynchronous callbacks, such as asynchronous XHR (`sendRequest`), RAF([`requestAnimationFrameAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestanimationframeasync)), idle callback([]`requestIdleCallbackAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestidlecallbackasync)).
+* Some cancellable & awaitable wrappers for asynchronous callbacks, such as asynchronous XHR (`sendRequest`), RAF([`requestAnimationFrameAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestanimationframeasync)), idle callback([`requestIdleCallbackAsync`](https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestidlecallbackasync)).
 
 Please note that this library depends on ES6 `Promise` (e.g. constructor, `Promise.resolve`, `Promise.reject`) to work, and we does not provide `Promise` polyfill here. If you need such thing, please get yourself a polyfill first. ([`core-js`](https://github.com/zloirock/core-js) is a nice one.)
 
