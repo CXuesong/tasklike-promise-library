@@ -1,5 +1,5 @@
-import { ICancellationToken, PromiseCancelledError } from "./cancellation";
-import { PromiseResolutionSource } from "./promiseResolutionSource";
+import { ICancellationToken, PromiseCancelledError } from "./primitives/cancellation";
+import { PromiseResolutionSource } from "./primitives/promiseResolutionSource";
 
 const _yieldedPromise = Promise.resolve();
 

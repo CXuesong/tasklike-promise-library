@@ -17,6 +17,9 @@
         "esModuleInterop": true,
         "declaration": true,
         "declarationMap": true,
+        "exclude": [
+            "../node_modules/node/**/*"
+        ],
         // Just in case the derived project forgot to set outDir.
         "outDir": "./dist"
     }

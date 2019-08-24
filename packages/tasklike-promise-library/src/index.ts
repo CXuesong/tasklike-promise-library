@@ -5,6 +5,5 @@
 
  /** */
 export * from "./common";
-export * from "./cancellation";
+export * from "./primitives";
 export * from "./http";
-export * from "./promiseResolutionSource";
