@@ -85,6 +85,7 @@ class XhrResponse implements IXhrResponse {
  * @param request the request parameters.
  * @param cancellationToken a token used to cancel the operation and abort the HTTP request.
  * @returns a `PromiseLike` that resolves inside `XMLHttpRequest` callback.
+ * @throws {@link PromiseCancelledError} if the request has either timed-out, or cancelled via `cancellationToken`.
  */
 export function sendRequest(
     request: Readonly<IRequestParams>,

@@ -1,6 +1,7 @@
 import {
     CancellationTokenSource, delay, ICancellationToken, IRequestParams,
-    PromiseCancelledError, sendRequest, yielded
+    PromiseCancelledError, requestAnimationFrameAsync, requestIdleCallbackAsync,
+    sendRequest, yielded
 } from "tasklike-promise-library";
 // tslint:disable-next-line:no-duplicate-imports
 import * as tplAmbient from "tasklike-promise-library";
@@ -16,6 +17,8 @@ function onLoad() {
     $("#tpl-yielded-run")!.addEventListener("click", () => runDemo(demoYield, "#tpl-yielded-panel"));
     $("#tpl-delay-run")!.addEventListener("click", () => runDemo(demoDelay, "#tpl-delay-panel", "#tpl-delay-cancel"));
     $("#tpl-sendrequest-run")!.addEventListener("click", () => runDemo(demoHttp, "#tpl-sendrequest-panel", "#tpl-sendrequest-cancel"));
+    $("#tpl-requesticb-run")!.addEventListener("click", () => runDemo(demoRequestIdleCallbackAsync, "#tpl-requesticb-panel", "#tpl-requesticb-cancel"));
+    $("#tpl-requestaf-run")!.addEventListener("click", () => runDemo(demoRequestAnimationFrameAsync, "#tpl-requestaf-panel", "#tpl-requestaf-cancel"));
     // Expose TPL library to the debugger console.
     (window as unknown as { TPL: typeof tplAmbient }).TPL = tplAmbient;
 }
@@ -55,6 +58,7 @@ async function runDemo(
     }
     catch (error) {
         panel.appendChild(buildErrorPanel(error));
+        console.error(error);
     } finally {
         if (cancelButton) {
             cancelButton.removeEventListener("click", onCancel);
@@ -112,7 +116,6 @@ async function demoHttp(panel: HTMLElement, ct?: ICancellationToken) {
             lastLine.innerText += " Successful.";
         } catch (error) {
             if (error instanceof PromiseCancelledError) {
-                console.assert(ct && ct.isCancellationRequested);
                 // If ct is cancelled, we won't continue the demo
                 throw error;
             }
@@ -123,6 +126,76 @@ async function demoHttp(panel: HTMLElement, ct?: ICancellationToken) {
     }
     await sendAndReport({ url: "tsconfig.json?rand=" + Math.random(), method: "GET", timeout: 2000 });
     await sendAndReport({ url: "tsconfig.json", method: "POST" });
+}
+
+async function demoRequestIdleCallbackAsync(panel: HTMLElement, ct?: ICancellationToken) {
+    ct && ct.throwIfCancellationRequested();
+    appendLine(panel, "requestIdleCallbackAsync");
+    const status = appendLine(panel, "Requesting…");
+    let counter = 0;
+    let timeoutCounter = 0;
+    let minIdleTime: undefined | number, maxIdleTime: undefined | number;
+    while (ct && !ct.isCancellationRequested) {
+        const context = await requestIdleCallbackAsync({ timeout: 1000 }, ct);
+        // Now we are inside requestIdleCallback callback.
+        const timeRemaining = context.deadline.timeRemaining();
+        counter++;
+        if (context.deadline.didTimeout) { timeoutCounter++; }
+        minIdleTime = minIdleTime == null ? timeRemaining : Math.min(timeRemaining, minIdleTime);
+        maxIdleTime = maxIdleTime == null ? timeRemaining : Math.max(timeRemaining, maxIdleTime);
+        status.innerText = `Requested: ${counter} times, timed-outs: ${timeoutCounter}, minIdleTime: ${minIdleTime}, maxIdleTime: ${maxIdleTime}`;
+    }
+}
+
+async function demoRequestAnimationFrameAsync(panel: HTMLElement, ct?: ICancellationToken) {
+    ct && ct.throwIfCancellationRequested();
+    appendLine(panel, "requestAnimationFrameAsync");
+    const status = appendLine(panel, "Requesting…");
+    const canvas = appendLine(panel, "This is <DIV>.");
+    const canvasWidth = 800, canvasHeight = 500;
+    const ballSize = 30;
+    const ball = document.createElement("button");
+    ball.innerText = "ball";
+    ball.style.borderRadius = "15px";
+    ball.style.position = "absolute";
+    ball.style.width = ball.style.height = ballSize + "px";
+    canvas.style.position = "relative";
+    canvas.style.width = canvasWidth + "px";
+    canvas.style.height = canvasHeight + "px";
+    canvas.appendChild(ball);
+    const startTime = performance.now();
+    let prevTime = startTime;
+    // Position: pixel.
+    let px = 0, py = 0;
+    // Velocity: pixel / sec.
+    let vx = 200, vy = 200;
+    let ax = 0, ay = 150;
+    let frameCounter = 0;
+    while (ct && !ct.isCancellationRequested) {
+        const context = await requestAnimationFrameAsync(ct);
+        // Now we are inside requestAnimationFrame callback.
+        const frameDuration = context.time - prevTime;
+        let x = px + vx * (frameDuration / 1000);
+        let y = py + vy * (frameDuration / 1000);
+        if (x < 0 || x + ball.offsetWidth > canvasWidth) {
+            vx = -vx * (Math.random() * 0.2 + 0.8);
+        } else {
+            px = x;
+            ball.style.left = x + "px";
+        }
+        if (y < 0 || y + ball.offsetHeight > canvasHeight) {
+            vy = -vy * (Math.random() * 0.2 + 0.8);
+        } else {
+            py = y;
+            vy += ay * (frameDuration / 1000);
+            ball.style.top = y + "px";
+        }
+        prevTime = context.time;
+        frameCounter++;
+        if (frameCounter > 30) {
+            status.innerText = `Frames: ${frameCounter}, time: ${((context.time - startTime) / 1000).toFixed(2)} sec., FPS: ${(frameCounter * 1000 / (context.time - startTime)).toFixed(2)}.`;
+        }
+    }
 }
 
 onLoad();
