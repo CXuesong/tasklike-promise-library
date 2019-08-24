@@ -1,3 +1,7 @@
+import { IDisposable } from "./disposable";
+import { EventEmitter } from "./eventEmitter";
+import { IConfigurablePromiseLike, PromiseLikeResolutionSource } from "./promiseLikeResolutionSource";
+
 // Import as few ./src modules as possible.
 /**
  * This module contains the infrastructure for cooperative `Promise` cancellation.
@@ -60,7 +64,7 @@ export interface ICancellationToken {
     /**
      * Gets a `Promise` that resolves when the token owner has requested for cancellation.
      */
-    readonly promise: Promise<void>;
+    readonly promiseLike: IConfigurablePromiseLike<void>;
     /**
      * Throws a `PromiseCancelledError` if `isCancellationRequested` is `true`.
      * 
@@ -73,45 +77,51 @@ export interface ICancellationToken {
      * @remarks
      * if the cancellation token has already been cancelled when calling this function,
      * the callback is still guaranteed to be executed asynchronously.
-     * 
-     * @todo
-     * In future version, this function should return a token for caller to cancel the subscription.
      */
-    subscribe(callback: () => void): void;
+    subscribe(callback: () => void): IDisposable;
 }
 
 class CancellationToken implements ICancellationToken {
-    // Do not depend on promiseResolutionSource here. Actually it may depend on CancellationToken in the future.
-    private _notifyCancel: (() => void) | undefined;
-    private _cancellationPromise: Promise<void> | undefined;
+    private _cancellationEvent: undefined | EventEmitter;
+    private _cancelled: undefined | boolean;
+    private _cancellationPlrs: undefined | PromiseLikeResolutionSource;
     public get isCancellationRequested(): boolean {
-        return !!this._cancellationPromise && !this._notifyCancel;
-    }
-    private _ensurePromiseInitialized() {
-        if (!this._cancellationPromise) {
-            this._cancellationPromise = new Promise((res, rej) => { this._notifyCancel = res; });
-        }
+        return !!this._cancelled;
     }
     public __int_cancel(): void {
-        this._ensurePromiseInitialized();
-        if (this._notifyCancel) {
-            this._notifyCancel();
-            this._notifyCancel = undefined;
+        if (this._cancellationEvent) {
+            this._cancellationEvent.raise();
+            this._cancellationEvent.clearListeners();
         }
+        if (this._cancellationPlrs) {
+            this._cancellationPlrs.tryResolve();
+        }
+        this._cancelled = true;
     }
     public throwIfCancellationRequested(): void {
-        if (this._cancellationPromise && !this._notifyCancel) {
+        if (this._cancelled) {
             throw new PromiseCancelledError();
         }
     }
-    // TODO return some sort of IDisposable.
-    public subscribe(callback: () => void): void {
-        this._ensurePromiseInitialized();
-        this._cancellationPromise!.then(callback);
+    public subscribe(callback: () => void): IDisposable {
+        if (!this._cancellationEvent) {
+            this._cancellationEvent = new EventEmitter();
+        }
+        const result = this._cancellationEvent.addListener(callback, true);
+        if (this._cancelled) {
+            this._cancellationEvent.raise();
+            this._cancellationEvent.clearListeners();
+        }
+        return result;
     }
-    public get promise(): Promise<void> {
-        this._ensurePromiseInitialized();
-        return this._cancellationPromise!;
+    public get promiseLike(): IConfigurablePromiseLike<void> {
+        if (this._cancellationPlrs) {
+            this._cancellationPlrs = new PromiseLikeResolutionSource();
+            if (this._cancelled) {
+                this._cancellationPlrs.tryResolve();
+            }
+        }
+        return this._cancellationPlrs!.promiseLike;
     }
 }
 

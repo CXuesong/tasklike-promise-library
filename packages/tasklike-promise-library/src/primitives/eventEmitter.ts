@@ -3,7 +3,7 @@ import { IDisposable } from "./disposable";
 interface ICallbackChainItem<T> {
     prev?: ICallbackChainItem<T>;
     callback: (this: any, arg: T) => void;
-    thisArg: any;
+    isAsync?: boolean;
     next?: ICallbackChainItem<T>;
 }
 
@@ -19,8 +19,9 @@ export class EventEmitter<T = void> {
      * @param listener function that is called when the current event raises.
      * @param thisArg provides `this` value for the `listener` callback.
      */
-    public addListener<TThis = void>(listener: (this: TThis, arg: T) => void, thisArg?: TThis): IDisposable {
-        let item: ICallbackChainItem<T> | undefined = { prev: this.tail, callback: listener, thisArg };
+    public addListener(listener: (this: undefined, arg: T) => void, isAsync?: boolean, thisArg?: undefined): IDisposable;
+    public addListener<TThis>(listener: (this: TThis, arg: T) => void, isAsync: boolean, thisArg: TThis): IDisposable {
+        let item: ICallbackChainItem<T> | undefined = { prev: this.tail, callback: listener.bind(thisArg), isAsync };
         if (!this.head) {
             console.assert(!this.tail);
             this.head = item;
@@ -57,8 +58,21 @@ export class EventEmitter<T = void> {
      */
     public raise(arg: T): void {
         let current = this.head;
+        let resolvedPromise: undefined | Promise<T>;
         while (current) {
-            current.callback.call(current.thisArg, arg);
+            if (current.isAsync) {
+                if (!resolvedPromise) {
+                    resolvedPromise = Promise.resolve(arg);
+                }
+                resolvedPromise.then(current.callback);
+            }
+            current.callback(arg);
         }
+    }
+    /**
+     * Clears all the event listeners.
+     */
+    public clearListeners(): void {
+        this.head = this.tail = undefined;
     }
 }
