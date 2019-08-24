@@ -62,7 +62,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><a href="https://www.npmjs.com/package/tasklike-promise-library"><img src="https://img.shields.io/npm/v/tasklike-promise-library" alt="npm"></a></p>
+				<p><a href="https://www.npmjs.com/package/tasklike-promise-library"><img src="https://img.shields.io/npm/v/tasklike-promise-library" alt="npm"></a>  <a href="https://github.com/CXuesong/tasklike-promise-library/issues"><img src="https://img.shields.io/github/issues-raw/CXuesong/tasklike-promise-library" alt="Github issues"></a>  <a href="https://github.com/CXuesong/tasklike-promise-library"><img src="https://img.shields.io/github/stars/CXuesong/tasklike-promise-library?style=social" alt="Github"></a></p>
 				<a href="#tasklike-promise-library" id="tasklike-promise-library" style="color: inherit; text-decoration: none;">
 					<h1>tasklike-promise-library</h1>
 				</a>
@@ -71,7 +71,7 @@
 					<li><code>Promise</code> <a href="https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation">cooperative cancellation</a> with <code>ICancellationToken</code>.</li>
 					<li><code>Promise</code> that resolves after certain period of time (<code>delay</code>).</li>
 					<li><code>Promise</code> that can be resolved/rejected/cancelled from outside, somewhat like <code>Deferred</code>  or <code>$.Deferred</code> (<code>PromiseResolutionSource</code>).</li>
-					<li>Some cancellable asynchronous operations, such as asynchronous XHR (<code>sendRequest</code>).</li>
+					<li>Some cancellable &amp; awaitable wrappers for asynchronous callbacks, such as asynchronous XHR (<code>sendRequest</code>), RAF(<a href="https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestanimationframeasync"><code>requestAnimationFrameAsync</code></a>), idle callback([]<code>requestIdleCallbackAsync</code>](<a href="https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestidlecallbackasync">https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html#requestidlecallbackasync</a>)).</li>
 				</ul>
 				<p>Please note that this library depends on ES6 <code>Promise</code> (e.g. constructor, <code>Promise.resolve</code>, <code>Promise.reject</code>) to work, and we does not provide <code>Promise</code> polyfill here. If you need such thing, please get yourself a polyfill first. (<a href="https://github.com/zloirock/core-js"><code>core-js</code></a> is a nice one.)</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
@@ -84,14 +84,15 @@ yarn add tasklike-promise-library</code></pre>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
-				<p><a href="https://cxuesong.github.io/tasklike-promise-library/docs/">API documentation is here.</a></p>
+				<p><a href="https://cxuesong.github.io/tasklike-promise-library/docs/">Full API documentation is here.</a></p>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
-				<p>See the <code>example</code> folder. <a href="https://cxuesong.github.io/tasklike-promise-library/sample/">Live example is here.</a></p>
+				<p>The following is a quick demonstration of use cases. For a full typescript example, see the <code>example</code> folder. <a href="https://cxuesong.github.io/tasklike-promise-library/sample/">Live example is here.</a></p>
 				<a href="#codedelaycode" id="codedelaycode" style="color: inherit; text-decoration: none;">
 					<h3><code>delay</code></h3>
 				</a>
+				<p>See <a href="https://cxuesong.github.io/tasklike-promise-library/docs/modules/_common_.html"><code>common</code> module</a>.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { delay, ICancellationToken } <span class="hljs-keyword">from</span> <span class="hljs-string">"tasklike-promise-library"</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomeWork</span>(<span class="hljs-params">ct?: ICancellationToken</span>) </span>{
@@ -103,6 +104,7 @@ yarn add tasklike-promise-library</code></pre>
 				<a href="#awaitable-xhr" id="awaitable-xhr" style="color: inherit; text-decoration: none;">
 					<h3>Awaitable XHR</h3>
 				</a>
+				<p>See <a href="https://cxuesong.github.io/tasklike-promise-library/docs/modules/_http_.html"><code>http</code> module</a>.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ICancellationToken, sendRequest } <span class="hljs-keyword">from</span> <span class="hljs-string">"tasklike-promise-library"</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchStatus</span>(<span class="hljs-params">ct?: ICancellationToken</span>) </span>{
@@ -111,9 +113,11 @@ yarn add tasklike-promise-library</code></pre>
     <span class="hljs-keyword">const</span> root: IStatusRoot = <span class="hljs-built_in">JSON</span>.parse(response.xhr.responseText);
     <span class="hljs-keyword">return</span> root.status;
 }</code></pre>
-				<a href="#awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode" id="awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode" style="color: inherit; text-decoration: none;">
-					<h3>Awaitable <code>setTimeout</code>/<code>requestAnimationFrame</code>/<code>requestIdleCallback</code></h3>
+				<a href="#awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode-with-callback-context" id="awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode-with-callback-context" style="color: inherit; text-decoration: none;">
+					<h3>Awaitable <code>setTimeout</code>/<code>requestAnimationFrame</code>/<code>requestIdleCallback</code> with callback context</h3>
 				</a>
+				<p>See <a href="https://cxuesong.github.io/tasklike-promise-library/docs/modules/_delayedcallbacks_.html"><code>delayedcallbacks</code> module</a>.</p>
+				<p>The notable benefit is that you can now write the animation in a <code>while</code> loop inside the same async function, and use <code>await</code> to switch context.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ICancellationToken, requestAnimationFrameAsync } <span class="hljs-keyword">from</span> <span class="hljs-string">"tasklike-promise-library"</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playAnimation</span>(<span class="hljs-params">cancellationToken?: ICancellationToken</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt; </span>{
