@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "build": "pwsh -c ./build-docs.ps1",
+    "build:doc": "pwsh -c ./build-docs.ps1 -DocumentationOnly",
     "deploy": "echo \"Be sure to run `yarn run build` before executing this script.\" && pause && gh-pages -d ./dist"
   },
   "devDependencies": {

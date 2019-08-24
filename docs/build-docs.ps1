@@ -1,5 +1,7 @@
 #!/usr/bin/env pwsh
-
+param (
+    [switch]$DocumentationOnly
+)
 $ErrorActionPreference = "Stop"
 
 function checkLastExitCode() {
@@ -9,7 +11,7 @@ function checkLastExitCode() {
 }
 
 Remove-Item ./dist -Force -Recurse -ErrorAction SilentlyContinue
-New-Item ./dist -ItemType Directory | Out-Null
+New-Item ./dist -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
 typedoc ../packages/tasklike-promise-library/src --tsconfig ../packages/tasklike-promise-library/tsconfig.json --out ./dist/docs/
 checkLastExitCode
@@ -34,6 +36,10 @@ if ($matchedLines) {
     Write-Host "Detected potential content to be redacted:"
     Write-Host $matchedLines
     Write-Error "Please review the results before continue."
+}
+
+if ($DocumentationOnly) {
+    return
 }
 
 # Default page
