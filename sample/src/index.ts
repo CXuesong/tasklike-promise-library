@@ -152,16 +152,13 @@ async function demoRequestAnimationFrameAsync(panel: HTMLElement, ct?: ICancella
     appendLine(panel, "requestAnimationFrameAsync");
     const status = appendLine(panel, "Requesting…");
     const canvas = appendLine(panel, "This is <DIV>.");
-    const canvasWidth = 800, canvasHeight = 500;
     const ballSize = 30;
     const ball = document.createElement("button");
     ball.innerText = "ball";
     ball.style.borderRadius = "15px";
     ball.style.position = "absolute";
     ball.style.width = ball.style.height = ballSize + "px";
-    canvas.style.position = "relative";
-    canvas.style.width = canvasWidth + "px";
-    canvas.style.height = canvasHeight + "px";
+    canvas.classList.add("canvas");
     canvas.appendChild(ball);
     const startTime = performance.now();
     let prevTime = startTime;
@@ -169,22 +166,29 @@ async function demoRequestAnimationFrameAsync(panel: HTMLElement, ct?: ICancella
     let px = 0, py = 0;
     // Velocity: pixel / sec.
     let vx = 200, vy = 200;
-    let ax = 0, ay = 150;
+    let ax = 0, ay = 200;
     let frameCounter = 0;
+    // Wait for layout to complete.
+    await requestAnimationFrameAsync(ct);
+    canvas.scrollIntoView();
+    // Start animation.
     while (!ct || !ct.isCancellationRequested) {
         const context = await requestAnimationFrameAsync(ct);
         // Now we are inside requestAnimationFrame callback.
         const frameDuration = context.time - prevTime;
+        const canvasWidth = canvas.clientWidth, canvasHeight = canvas.clientHeight;
         let x = px + vx * (frameDuration / 1000);
         let y = py + vy * (frameDuration / 1000);
         if (x < 0 || x + ball.offsetWidth > canvasWidth) {
             vx = -vx * (Math.random() * 0.2 + 0.8);
+            px = x < 0 ? 0 : canvasWidth - ball.offsetWidth;
         } else {
             px = x;
             ball.style.left = x + "px";
         }
         if (y < 0 || y + ball.offsetHeight > canvasHeight) {
             vy = -vy * (Math.random() * 0.2 + 0.8);
+            py = y < 0 ? 0 : canvasHeight - ball.offsetHeight;
         } else {
             py = y;
             vy += ay * (frameDuration / 1000);

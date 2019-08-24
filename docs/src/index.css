@@ -2,7 +2,7 @@ body {
     font-family: Calibri, 'Trebuchet MS', sans-serif 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-@media (min-width: 600px) and (min-height: 400px) {
+@media (min-width: 500px) and (min-height: 400px) {
 
     html,
     body {
