@@ -67,6 +67,7 @@ export class EventEmitter<T = void> {
                 resolvedPromise.then(current.callback);
             }
             current.callback(arg);
+            current = current.next;
         }
     }
     /**

@@ -15,8 +15,7 @@
  * ```
  */
 /** */
-import { IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "./primitives";
-import { ICancellationToken } from "./primitives/cancellation";
+import { ICancellationToken, IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "./primitives";
 
 /**
  * Gets a `PromiseLike` that resolves inside `window.setTimeout` callback.
