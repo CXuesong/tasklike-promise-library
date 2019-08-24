@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IXhrResponse | tasklike-promise-library</title>
+	<title>IRequestIdleCallbackDeadline | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_http_.html">&quot;http&quot;</a>
+					<a href="../modules/_delayedcallbacks_.html">&quot;delayedCallbacks&quot;</a>
 				</li>
 				<li>
-					<a href="_http_.ixhrresponse.html">IXhrResponse</a>
+					<a href="_delayedcallbacks_.irequestidlecallbackdeadline.html">IRequestIdleCallbackDeadline</a>
 				</li>
 			</ul>
-			<h1>Interface IXhrResponse</h1>
+			<h1>Interface IRequestIdleCallbackDeadline</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the response of an HTTP request.</p>
+						<p>Callback argument for <code>window.requestIdleCallback</code>.
+						See <a href="https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline"><code>IdleDeadline</code></a> for more information.</p>
 					</div>
 				</div>
 			</section>
@@ -78,12 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">object</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">IXhrResponse</span>
-							</li>
-						</ul>
+						<span class="target">IRequestIdleCallbackDeadline</span>
 					</li>
 				</ul>
 			</section>
@@ -94,7 +90,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_delayedcallbacks_.irequestidlecallbackdeadline.html#didtimeout" class="tsd-kind-icon">did<wbr>Timeout</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_delayedcallbacks_.irequestidlecallbackdeadline.html#timeremaining" class="tsd-kind-icon">time<wbr>Remaining</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,14 +105,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="xhr" class="tsd-anchor"></a>
-					<h3>xhr</h3>
-					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">XMLHttpRequest</span></div>
+					<a name="didtimeout" class="tsd-anchor"></a>
+					<h3>did<wbr>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">did<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L54">http.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/delayedCallbacks.ts#L110">delayedCallbacks.ts:110</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="timeremaining" class="tsd-anchor"></a>
+					<h3>time<wbr>Remaining</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">time<wbr>Remaining<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/delayedCallbacks.ts#L111">delayedCallbacks.ts:111</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -123,10 +145,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_common_.html">"common"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_http_.html">"http"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -157,35 +179,38 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_http_.httprequesterror.html" class="tsd-kind-icon">Http<wbr>Request<wbr>Error</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_delayedcallbacks_.irequestanimationframecontext.html" class="tsd-kind-icon">IRequest<wbr>Animation<wbr>Frame<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.imutablehttpresponse.html" class="tsd-kind-icon">IMutable<wbr>Http<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.irequestparams.html" class="tsd-kind-icon">IRequest<wbr>Params</a>
+						<a href="_delayedcallbacks_.irequestidlecallbackcontext.html" class="tsd-kind-icon">IRequest<wbr>Idle<wbr>Callback<wbr>Context</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.ixhrresponse.html" class="tsd-kind-icon">IXhr<wbr>Response</a>
+						<a href="_delayedcallbacks_.irequestidlecallbackdeadline.html" class="tsd-kind-icon">IRequest<wbr>Idle<wbr>Callback<wbr>Deadline</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a>
+								<a href="_delayedcallbacks_.irequestidlecallbackdeadline.html#didtimeout" class="tsd-kind-icon">did<wbr>Timeout</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_delayedcallbacks_.irequestidlecallbackdeadline.html#timeremaining" class="tsd-kind-icon">time<wbr>Remaining</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#httpheaders" class="tsd-kind-icon">Http<wbr>Headers</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#ihttpresponse" class="tsd-kind-icon">IHttp<wbr>Response</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_delayedcallbacks_.irequestidlecallbackoptions.html" class="tsd-kind-icon">IRequest<wbr>Idle<wbr>Callback<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a>
+						<a href="../modules/_delayedcallbacks_.html#requestanimationframeasync" class="tsd-kind-icon">request<wbr>Animation<wbr>Frame<wbr>Async</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_delayedcallbacks_.html#requestidlecallbackasync" class="tsd-kind-icon">request<wbr>Idle<wbr>Callback<wbr>Async</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_delayedcallbacks_.html#settimeoutasync" class="tsd-kind-icon">set<wbr>Timeout<wbr>Async</a>
 					</li>
 				</ul>
 			</nav>

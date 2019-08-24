@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;cancellation&quot; | tasklike-promise-library</title>
+	<title>IDisposable | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_cancellation_.html">&quot;cancellation&quot;</a>
+					<a href="../modules/_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
+				</li>
+				<li>
+					<a href="_primitives_disposable_.idisposable.html">IDisposable</a>
 				</li>
 			</ul>
-			<h1>External module &quot;cancellation&quot;</h1>
+			<h1>Interface IDisposable</h1>
 		</div>
 	</div>
 </header>
@@ -67,33 +70,61 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>This module contains the infrastructure for cooperative <code>Promise</code> cancellation.</p>
+						<p>Represents a callback for event listener detaching or other forms of generic resource clean-up.</p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>see</dt>
-						<dd><p><a href="../interfaces/_cancellation_.icancellationtoken.html">ICancellationToken</a></p>
-						</dd>
-					</dl>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IDisposable</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_primitives_disposable_.idisposable.html#dispose" class="tsd-kind-icon">dispose</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="dispose" class="tsd-anchor"></a>
+					<h3>dispose</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">dispose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/disposable.ts#L11">primitives/disposable.ts:11</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the detaching, unsubscription, or ther forms of generic resource clean-up.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>The function allows to be called multiple times. However, if the first call to
+											this function does not throw any error, so should the later calls. In most cases,
+										Only the first call is truly effective.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -103,33 +134,57 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_common_.html">"common"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_http_.html">"http"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_primitives_cancellation_.html">"primitives/cancellation"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_cancellation_.html">"cancellation"</a>
+						<a href="../modules/_primitives_disposable_.html">"primitives/disposable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_common_.html">"common"</a>
+						<a href="../modules/_primitives_errors_.html">"primitives/errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_http_.html">"http"</a>
+						<a href="../modules/_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="../modules/_primitives_index_.html">"primitives/index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_promiseresolutionsource_.html">"promise<wbr>Resolution<wbr>Source"</a>
+						<a href="../modules/_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_primitives_disposable_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_primitives_disposable_.idisposable.html#dispose" class="tsd-kind-icon">dispose</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_primitives_disposable_.html#combinedisposable" class="tsd-kind-icon">combine<wbr>Disposable</a>
 					</li>
 				</ul>
 			</nav>

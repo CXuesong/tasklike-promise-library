@@ -111,10 +111,35 @@ yarn add tasklike-promise-library</code></pre>
     <span class="hljs-keyword">const</span> root: IStatusRoot = <span class="hljs-built_in">JSON</span>.parse(response.xhr.responseText);
     <span class="hljs-keyword">return</span> root.status;
 }</code></pre>
+				<a href="#awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode" id="awaitable-codesettimeoutcodecoderequestanimationframecodecoderequestidlecallbackcode" style="color: inherit; text-decoration: none;">
+					<h3>Awaitable <code>setTimeout</code>/<code>requestAnimationFrame</code>/<code>requestIdleCallback</code></h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ICancellationToken, requestAnimationFrameAsync } <span class="hljs-keyword">from</span> <span class="hljs-string">"tasklike-promise-library"</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">playAnimation</span>(<span class="hljs-params">cancellationToken?: ICancellationToken</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt; </span>{
+    cancellationToken &amp;&amp; cancellationToken.throwIfCancellationRequested();
+    <span class="hljs-keyword">let</span> prevTime = performance.now();
+    <span class="hljs-keyword">let</span> currentWidth = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> panel = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"div.panel"</span>);
+    <span class="hljs-keyword">while</span> (!cancellationToken || !cancellationToken.isCancellationRequested) {
+        <span class="hljs-keyword">const</span> animationFrame = <span class="hljs-keyword">await</span> requestAnimationFrameAsync(cancellationToken);
+        <span class="hljs-comment">// From now on, we are inside RAF callback.</span>
+        <span class="hljs-comment">// `animationFrame` contains the information passed from RAF callback,</span>
+        <span class="hljs-comment">// basically, the start time of the animation frame.</span>
+        <span class="hljs-comment">// Make some animation here.</span>
+        <span class="hljs-keyword">const</span> frameDuration = animationFrame.time - prevTime;
+        <span class="hljs-comment">// Let the width of .panel increase by 10 pixel/sec.</span>
+        currentWidth += frameDuration * <span class="hljs-number">10</span> * frameDuration / <span class="hljs-number">1000</span>;
+        panel.styles.with = <span class="hljs-built_in">Math</span>.round(currentWidth) + <span class="hljs-string">"px"</span>;
+        prevTime = animationFrame.time;
+        <span class="hljs-comment">// End of RAF callback.</span>
+        <span class="hljs-comment">// (More precisely, the callback stop at the next `await requestAnimationFrameAsync` expression.)</span>
+    }
+}</code></pre>
 				<a href="#build-and-test" id="build-and-test" style="color: inherit; text-decoration: none;">
 					<h2>Build and test</h2>
 				</a>
-				<p>You will need <code>yarn</code> to build this repository properly. You will need PowerShell Core if you want to build the documentation.</p>
+				<p>You will need <code>yarn</code> and PowerShell Core <code>pwsh</code> to build this repository properly.</p>
 				<pre><code class="language-powershell"><span class="hljs-comment"># in repository root</span>
 PS /&gt; yarn install
 <span class="hljs-comment"># build repository</span>
@@ -135,10 +160,10 @@ PS /packages/tasklike-promise-library&gt; yarn run watch</code></pre>
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_cancellation_.html">"cancellation"</a>
+						<a href="modules/_common_.html">"common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_common_.html">"common"</a>
+						<a href="modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_http_.html">"http"</a>
@@ -147,7 +172,25 @@ PS /packages/tasklike-promise-library&gt; yarn run watch</code></pre>
 						<a href="modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_promiseresolutionsource_.html">"promise<wbr>Resolution<wbr>Source"</a>
+						<a href="modules/_primitives_cancellation_.html">"primitives/cancellation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_disposable_.html">"primitives/disposable"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_errors_.html">"primitives/errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_index_.html">"primitives/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>

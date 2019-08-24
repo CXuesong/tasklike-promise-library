@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IXhrResponse | tasklike-promise-library</title>
+	<title>&quot;primitives/disposable&quot; | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,63 +54,68 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_http_.html">&quot;http&quot;</a>
-				</li>
-				<li>
-					<a href="_http_.ixhrresponse.html">IXhrResponse</a>
+					<a href="_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface IXhrResponse</h1>
+			<h1>External module &quot;primitives/disposable&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the response of an HTTP request.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="tsd-signature-type">object</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">IXhrResponse</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-kind-icon">IDisposable</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_primitives_disposable_.html#combinedisposable" class="tsd-kind-icon">combine<wbr>Disposable</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="xhr" class="tsd-anchor"></a>
-					<h3>xhr</h3>
-					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">XMLHttpRequest</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L54">http.ts:54</a></li>
-						</ul>
-					</aside>
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="combinedisposable" class="tsd-anchor"></a>
+					<h3>combine<wbr>Disposable</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">combine<wbr>Disposable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>disposables<span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/disposable.ts#L19">primitives/disposable.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Combines <a href="../interfaces/_primitives_disposable_.idisposable.html">IDisposable</a> instances.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>disposables: <a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>0, 1, or more instances to be combined.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+							<p>an <a href="../interfaces/_primitives_disposable_.idisposable.html">IDisposable</a> that disposes the given instances when <a href="../interfaces/_primitives_disposable_.idisposable.html#dispose">IDisposable.dispose</a> is called.</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -121,71 +126,47 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_common_.html">"common"</a>
+						<a href="_common_.html">"common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
+						<a href="_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_http_.html">"http"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_cancellation_.html">"primitives/cancellation"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_http_.html">"http"</a>
+						<a href="_primitives_disposable_.html">"primitives/disposable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="_primitives_errors_.html">"primitives/errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_cancellation_.html">"primitives/cancellation"</a>
+						<a href="_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_disposable_.html">"primitives/disposable"</a>
+						<a href="_primitives_index_.html">"primitives/index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_errors_.html">"primitives/errors"</a>
+						<a href="_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_index_.html">"primitives/index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
+						<a href="_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_http_.httprequesterror.html" class="tsd-kind-icon">Http<wbr>Request<wbr>Error</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.imutablehttpresponse.html" class="tsd-kind-icon">IMutable<wbr>Http<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.irequestparams.html" class="tsd-kind-icon">IRequest<wbr>Params</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.ixhrresponse.html" class="tsd-kind-icon">IXhr<wbr>Response</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#httpheaders" class="tsd-kind-icon">Http<wbr>Headers</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#ihttpresponse" class="tsd-kind-icon">IHttp<wbr>Response</a>
+						<a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a>
+						<a href="_primitives_disposable_.html#combinedisposable" class="tsd-kind-icon">combine<wbr>Disposable</a>
 					</li>
 				</ul>
 			</nav>

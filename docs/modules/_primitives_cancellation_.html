@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PromiseCancelledError | tasklike-promise-library</title>
+	<title>&quot;primitives/cancellation&quot; | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_cancellation_.html">&quot;cancellation&quot;</a>
-				</li>
-				<li>
-					<a href="_cancellation_.promisecancellederror.html">PromiseCancelledError</a>
+					<a href="_primitives_cancellation_.html">&quot;primitives/cancellation&quot;</a>
 				</li>
 			</ul>
-			<h1>Class PromiseCancelledError</h1>
+			<h1>External module &quot;primitives/cancellation&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -69,123 +66,37 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>An error that raises when the current promise has been rejected due to cancellation.</p>
-					</div>
 					<dl class="tsd-comment-tags">
-						<dt>remarks</dt>
-						<dd><p>ES6 <code>Promise</code> does not have cancellation support,
-							so TPL uses <code>reject</code> with <a href="_cancellation_.promisecancellederror.html">PromiseCancelledError</a> to indicate a cancelled <code>Promise</code>.</p>
+						<dt>module</dt>
+						<dd><p>This module contains the infrastructure for cooperative <code>Promise</code> cancellation.</p>
+						</dd>
+						<dt>see</dt>
+						<dd><p><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a></p>
+						</dd>
+						<dt>see</dt>
+						<dd><p><a href="../classes/_primitives_cancellation_.cancellationtokensource.html">CancellationTokenSource</a></p>
 						</dd>
 					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="tsd-signature-type">Error</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">PromiseCancelledError</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
+							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_cancellation_.promisecancellederror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_primitives_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_primitives_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_cancellation_.promisecancellederror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_cancellation_.promisecancellederror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_cancellation_.promisecancellederror.html#stack" class="tsd-kind-icon">stack</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_cancellation_.promisecancellederror.html#error" class="tsd-kind-icon">Error</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Promise<wbr>Cancelled<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_cancellation_.promisecancellederror.html" class="tsd-signature-type">PromiseCancelledError</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L16">cancellation.ts:16</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> message: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_cancellation_.promisecancellederror.html" class="tsd-signature-type">PromiseCancelledError</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.message</p>
-						<ul>
-							<li>Defined in [REPOROOT]/node_modules/typescript/lib/lib.es5.d.ts:974</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;PromiseCancelledError&quot;</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides Error.name</p>
-						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/cancellation.ts#L16">cancellation.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.stack</p>
-						<p>Overrides Error.stack</p>
-						<ul>
-							<li>Defined in [REPOROOT]/node_modules/typescript/lib/lib.es5.d.ts:975</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="error" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in [REPOROOT]/node_modules/typescript/lib/lib.es5.d.ts:984</li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 		</div>
@@ -195,54 +106,51 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_common_.html">"common"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_http_.html">"http"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_index_.html">"index"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_cancellation_.html">"cancellation"</a>
+						<a href="_primitives_cancellation_.html">"primitives/cancellation"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_common_.html">"common"</a>
+						<a href="_primitives_disposable_.html">"primitives/disposable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_http_.html">"http"</a>
+						<a href="_primitives_errors_.html">"primitives/errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_promiseresolutionsource_.html">"promise<wbr>Resolution<wbr>Source"</a>
+						<a href="_primitives_index_.html">"primitives/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a>
+						<a href="../classes/_primitives_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_cancellation_.promisecancellederror.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="_cancellation_.promisecancellederror.html#message" class="tsd-kind-icon">message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
-								<a href="_cancellation_.promisecancellederror.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="_cancellation_.promisecancellederror.html#stack" class="tsd-kind-icon">stack</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="_cancellation_.promisecancellederror.html#error" class="tsd-kind-icon">Error</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_primitives_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a>
+						<a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a>
 					</li>
 				</ul>
 			</nav>

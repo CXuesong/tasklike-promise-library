@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IMutableHttpResponse | tasklike-promise-library</title>
+	<title>ICancellationToken | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_http_.html">&quot;http&quot;</a>
+					<a href="../modules/_primitives_cancellation_.html">&quot;primitives/cancellation&quot;</a>
 				</li>
 				<li>
-					<a href="_http_.imutablehttpresponse.html">IMutableHttpResponse</a>
+					<a href="_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a>
 				</li>
 			</ul>
-			<h1>Interface IMutableHttpResponse</h1>
+			<h1>Interface ICancellationToken</h1>
 		</div>
 	</div>
 </header>
@@ -70,12 +70,29 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the basic trait of an HTTP response.
-						Instances directly implementing this interface is mutable.</p>
+						<p>Represents subscribable a cancellation notification.</p>
 					</div>
+					<p>Cancellation notification can be propagated by passing the same instance into cancellable callee async functions.</p>
 					<dl class="tsd-comment-tags">
+						<dt>remarks</dt>
+						<dd><p>Like the concept of &quot;Task cooperative cancellation&quot; introduced in .NET Framework,
+								when the async function implementation wants to support cancellation, it should accept an
+							extra optional parameter of type <a href="_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a>.</p>
+							<p>In your function implementation, you should do at least one of the following</p>
+							<ul>
+								<li>Check for cancellation with <a href="_primitives_cancellation_.icancellationtoken.html#iscancellationrequested">ICancellationToken.isCancellationRequested</a> or <a href="_primitives_cancellation_.icancellationtoken.html#throwifcancellationrequested">ICancellationToken.throwIfCancellationRequested</a>;</li>
+								<li>Pass the cancellation token into the callee functions that supports cancellation with <a href="_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a>;</li>
+								<li>Subscribe for the cancellation event with <a href="_primitives_cancellation_.icancellationtoken.html#subscribe">ICancellationToken.subscribe</a>.</li>
+							</ul>
+							<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomeWork</span>(<span class="hljs-params">ct?: ICancellationToken</span>) </span>{
+  ct.throwIfCancellationRequested();
+  <span class="hljs-comment">// do something</span>
+  <span class="hljs-keyword">await</span> delay(<span class="hljs-number">1000</span>, ct);
+  <span class="hljs-comment">// do something else</span>
+}</code></pre>
+						</dd>
 						<dt>see</dt>
-						<dd><p>IHttpResponse</p>
+						<dd><p><a href="../classes/_primitives_cancellation_.cancellationtokensource.html">CancellationTokenSource</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -84,7 +101,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IMutableHttpResponse</span>
+						<span class="target">ICancellationToken</span>
 					</li>
 				</ul>
 			</section>
@@ -95,15 +112,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#issuccessfulstatuscode" class="tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#statuscode" class="tsd-kind-icon">status<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#statustext" class="tsd-kind-icon">status<wbr>Text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_primitives_cancellation_.icancellationtoken.html#iscancellationrequested" class="tsd-kind-icon">is<wbr>Cancellation<wbr>Requested</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_primitives_cancellation_.icancellationtoken.html#promiselike" class="tsd-kind-icon">promise<wbr>Like</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#ensuresuccessfulstatuscode" class="tsd-kind-icon">ensure<wbr>Successful<wbr>Status<wbr>Code</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_primitives_cancellation_.icancellationtoken.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_primitives_cancellation_.icancellationtoken.html#throwifcancellationrequested" class="tsd-kind-icon">throw<wbr>IfCancellation<wbr>Requested</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,51 +129,120 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="issuccessfulstatuscode" class="tsd-anchor"></a>
-					<h3>is<wbr>Successful<wbr>Status<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="iscancellationrequested" class="tsd-anchor"></a>
+					<h3>is<wbr>Cancellation<wbr>Requested</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Cancellation<wbr>Requested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L40">http.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/cancellation.ts#L63">primitives/cancellation.ts:63</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the token owner has requested for cancellation.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>Note that if this field returns <code>true</code>,
+								the <code>subscribe</code> callbacks are not guaranteed to have (all) executed.</p>
+							</dd>
+							<dt>see</dt>
+							<dd><p><a href="_primitives_cancellation_.icancellationtoken.html#throwifcancellationrequested">ICancellationToken.throwIfCancellationRequested</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuscode" class="tsd-anchor"></a>
-					<h3>status<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">status<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="promiselike" class="tsd-anchor"></a>
+					<h3>promise<wbr>Like</h3>
+					<div class="tsd-signature tsd-kind-icon">promise<wbr>Like<span class="tsd-signature-symbol">:</span> <a href="_primitives_promiselikeresolutionsource_.iconfigurablepromiselike.html" class="tsd-signature-type">IConfigurablePromiseLike</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L38">http.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/cancellation.ts#L67">primitives/cancellation.ts:67</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statustext" class="tsd-anchor"></a>
-					<h3>status<wbr>Text</h3>
-					<div class="tsd-signature tsd-kind-icon">status<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L39">http.ts:39</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets a <code>Promise</code> that resolves when the token owner has requested for cancellation.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="ensuresuccessfulstatuscode" class="tsd-anchor"></a>
-					<h3>ensure<wbr>Successful<wbr>Status<wbr>Code</h3>
+					<a name="subscribe" class="tsd-anchor"></a>
+					<h3>subscribe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">ensure<wbr>Successful<wbr>Status<wbr>Code<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L41">http.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/cancellation.ts#L83">primitives/cancellation.ts:83</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a callback function that is called when token owner has requested for cancellation.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>if the cancellation token has already been cancelled when calling this function,
+										the callback is still guaranteed to be executed <em>asynchronously</em>.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the function to be called <em>asynchronously</em> when the cancellation has been requested.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+							<p>an <a href="_primitives_disposable_.idisposable.html">IDisposable</a> used to unsubscribe the cancellation callback.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="throwifcancellationrequested" class="tsd-anchor"></a>
+					<h3>throw<wbr>IfCancellation<wbr>Requested</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">throw<wbr>IfCancellation<wbr>Requested<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/primitives/cancellation.ts#L73">primitives/cancellation.ts:73</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Throws a <code>PromiseCancelledError</code> if <code>isCancellationRequested</code> is <code>true</code>.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="_primitives_cancellation_.icancellationtoken.html#iscancellationrequested">ICancellationToken.isCancellationRequested</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -175,13 +261,13 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_http_.html">"http"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_primitives_cancellation_.html">"primitives/cancellation"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -207,44 +293,32 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_http_.httprequesterror.html" class="tsd-kind-icon">Http<wbr>Request<wbr>Error</a>
+						<a href="../classes/_primitives_cancellation_.cancellationtokensource.html" class="tsd-kind-icon">Cancellation<wbr>Token<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_primitives_cancellation_.promisecancellederror.html" class="tsd-kind-icon">Promise<wbr>Cancelled<wbr>Error</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.imutablehttpresponse.html" class="tsd-kind-icon">IMutable<wbr>Http<wbr>Response</a>
+						<a href="_primitives_cancellation_.icancellationtoken.html" class="tsd-kind-icon">ICancellation<wbr>Token</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_http_.imutablehttpresponse.html#issuccessfulstatuscode" class="tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code</a>
+								<a href="_primitives_cancellation_.icancellationtoken.html#iscancellationrequested" class="tsd-kind-icon">is<wbr>Cancellation<wbr>Requested</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_http_.imutablehttpresponse.html#statuscode" class="tsd-kind-icon">status<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_http_.imutablehttpresponse.html#statustext" class="tsd-kind-icon">status<wbr>Text</a>
+								<a href="_primitives_cancellation_.icancellationtoken.html#promiselike" class="tsd-kind-icon">promise<wbr>Like</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_http_.imutablehttpresponse.html#ensuresuccessfulstatuscode" class="tsd-kind-icon">ensure<wbr>Successful<wbr>Status<wbr>Code</a>
+								<a href="_primitives_cancellation_.icancellationtoken.html#subscribe" class="tsd-kind-icon">subscribe</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_primitives_cancellation_.icancellationtoken.html#throwifcancellationrequested" class="tsd-kind-icon">throw<wbr>IfCancellation<wbr>Requested</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.irequestparams.html" class="tsd-kind-icon">IRequest<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_http_.ixhrresponse.html" class="tsd-kind-icon">IXhr<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#httpheaders" class="tsd-kind-icon">Http<wbr>Headers</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#ihttpresponse" class="tsd-kind-icon">IHttp<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_http_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

@@ -64,6 +64,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>module</dt>
+						<dd><p>Contains functions for awaitable HTTP request.</p>
+						</dd>
+						<dt>see</dt>
+						<dd><p><a href="_http_.html#sendrequest">sendRequest</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -106,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">Http<wbr>Headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/http.ts#L4">http.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L12">http.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -124,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">IHttp<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.imutablehttpresponse.html" class="tsd-signature-type">IMutableHttpResponse</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/http.ts#L40">http.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L48">http.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -141,19 +153,24 @@
 					<a name="sendrequest" class="tsd-anchor"></a>
 					<h3>send<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Request<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.irequestparams.html" class="tsd-signature-type">IRequestParams</a><span class="tsd-signature-symbol">&gt;</span>, cancellationToken<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.ixhrresponse.html" class="tsd-signature-type">IXhrResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Request<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.irequestparams.html" class="tsd-signature-type">IRequestParams</a><span class="tsd-signature-symbol">&gt;</span>, cancellationToken<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_promiselikeresolutionsource_.iconfigurablepromiselike.html" class="tsd-signature-type">IConfigurablePromiseLike</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.ixhrresponse.html" class="tsd-signature-type">IXhrResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/http.ts#L80">http.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/http.ts#L90">http.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Send an HTTP request with <code>XMLHttpRequest</code>.</p>
+									<p>Sends an HTTP request with <code>XMLHttpRequest</code>.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><a href="../classes/_primitives_cancellation_.promisecancellederror.html">PromiseCancelledError</a> if the request has either timed-out, or cancelled via <code>cancellationToken</code>.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -164,13 +181,14 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancellationToken: <a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancellationToken: <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a token used to cancel the operation and abort the HTTP request.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.ixhrresponse.html" class="tsd-signature-type">IXhrResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_primitives_promiselikeresolutionsource_.iconfigurablepromiselike.html" class="tsd-signature-type">IConfigurablePromiseLike</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_.ixhrresponse.html" class="tsd-signature-type">IXhrResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a <code>PromiseLike</code> that resolves inside <code>XMLHttpRequest</code> callback.</p>
 						</li>
 					</ul>
 				</section>
@@ -183,10 +201,10 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_cancellation_.html">"cancellation"</a>
+						<a href="_common_.html">"common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_common_.html">"common"</a>
+						<a href="_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="_http_.html">"http"</a>
@@ -195,7 +213,25 @@
 						<a href="_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_promiseresolutionsource_.html">"promise<wbr>Resolution<wbr>Source"</a>
+						<a href="_primitives_cancellation_.html">"primitives/cancellation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_disposable_.html">"primitives/disposable"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_errors_.html">"primitives/errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_index_.html">"primitives/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>

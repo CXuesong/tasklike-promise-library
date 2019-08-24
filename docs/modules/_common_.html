@@ -64,6 +64,15 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>module</dt>
+						<dd><p>Contains common utility functions for <code>Promise</code>.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -87,13 +96,13 @@
 					<a name="delay" class="tsd-anchor"></a>
 					<h3>delay</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">(</span>milliseconds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, cancellationToken<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">(</span>milliseconds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, cancellationToken<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/common.ts#L12">common.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/common.ts#L18">common.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -103,6 +112,9 @@
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
 									<dd><p><a href="_common_.html#yielded">yielded</a></p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>make this function also works in nodejs.</p>
 									</dd>
 								</dl>
 							</div>
@@ -115,7 +127,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancellationToken: <a href="../interfaces/_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancellationToken: <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a token used to cancel the returned <code>Promise</code>.</p>
 									</div>
@@ -135,14 +147,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/common.ts#L67">common.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/common.ts#L73">common.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets a cancelled <code>Promise</code>.</p>
 								</div>
-								<p>A cancelled <code>Promise</code> is a <code>Promise</code> rejected with <a href="../classes/_cancellation_.promisecancellederror.html">PromiseCancelledError</a>.</p>
+								<p>A cancelled <code>Promise</code> is a <code>Promise</code> rejected with <a href="../classes/_primitives_cancellation_.promisecancellederror.html">PromiseCancelledError</a>.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -164,7 +176,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/common.ts#L58">common.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/common.ts#L64">common.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,7 +214,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/common.ts#L49">common.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/common.ts#L55">common.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -240,7 +252,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/c33f730/packages/tasklike-promise-library/src/common.ts#L40">common.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/60fb26c/packages/tasklike-promise-library/src/common.ts#L46">common.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -270,11 +282,11 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_cancellation_.html">"cancellation"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="_common_.html">"common"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_http_.html">"http"</a>
@@ -283,7 +295,25 @@
 						<a href="_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_promiseresolutionsource_.html">"promise<wbr>Resolution<wbr>Source"</a>
+						<a href="_primitives_cancellation_.html">"primitives/cancellation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_disposable_.html">"primitives/disposable"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_errors_.html">"primitives/errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_index_.html">"primitives/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
 					</li>
 				</ul>
 			</nav>
