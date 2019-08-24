@@ -57,9 +57,36 @@ async function fetchStatus(ct?: ICancellationToken) {
 }
 ```
 
+### Awaitable `setTimeout`/`requestAnimationFrame`/`requestIdleCallback`
+
+```typescript
+import { ICancellationToken, requestAnimationFrameAsync } from "tasklike-promise-library";
+
+async function playAnimation(cancellationToken?: ICancellationToken): Promise<void> {
+    cancellationToken && cancellationToken.throwIfCancellationRequested();
+    let prevTime = performance.now();
+    let currentWidth = 0;
+    const panel = document.querySelector("div.panel");
+    while (!cancellationToken || !cancellationToken.isCancellationRequested) {
+        const animationFrame = await requestAnimationFrameAsync(cancellationToken);
+        // From now on, we are inside RAF callback.
+        // `animationFrame` contains the information passed from RAF callback,
+        // basically, the start time of the animation frame.
+        // Make some animation here.
+        const frameDuration = animationFrame.time - prevTime;
+        // Let the width of .panel increase by 10 pixel/sec.
+        currentWidth += frameDuration * 10 * frameDuration / 1000;
+        panel.styles.with = Math.round(currentWidth) + "px";
+        prevTime = animationFrame.time;
+        // End of RAF callback.
+        // (More precisely, the callback stop at the next `await requestAnimationFrameAsync` expression.)
+    }
+}
+```
+
 ## Build and test
 
-You will need `yarn` to build this repository properly. You will need PowerShell Core if you want to build the documentation.
+You will need `yarn` and PowerShell Core `pwsh` to build this repository properly.
 
 ```powershell
 # in repository root
