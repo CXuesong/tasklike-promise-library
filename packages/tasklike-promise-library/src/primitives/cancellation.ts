@@ -1,14 +1,14 @@
+/**
+ * @module
+ * This module contains the infrastructure for cooperative `Promise` cancellation.
+ * @see {@link ICancellationToken}
+ */
+/** */
 import { IDisposable } from "./disposable";
 import { EventEmitter } from "./eventEmitter";
 import { IConfigurablePromiseLike, PromiseLikeResolutionSource } from "./promiseLikeResolutionSource";
 
 // Import as few ./src modules as possible.
-/**
- * This module contains the infrastructure for cooperative `Promise` cancellation.
- * 
- * @see {@link ICancellationToken}
- */
-
 /**
  * An error that raises when the current promise has been rejected due to cancellation.
  * 

@@ -14,6 +14,7 @@
  * }
  * ```
  */
+/** */
 import { IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "./primitives";
 import { ICancellationToken } from "./primitives/cancellation";
 
@@ -23,6 +24,8 @@ import { ICancellationToken } from "./primitives/cancellation";
  * @param cancellationToken a token used to cancel the timeout with `window.clearTimeout`.
  * @returns a `PromiseLike` that resolves inside `window.setTimeout` callback.
  * Resolved value is the timeout ID returned from `window.setTimeout`.
+ * @remarks Compared with {@link delay}, this function is more low-level and you should prefer to
+ * use {@link delay} when possible.
  */
 export function setTimeoutAsync(milliseconds: number, cancellationToken?: ICancellationToken): IConfigurablePromiseLike<number> {
     cancellationToken && cancellationToken.throwIfCancellationRequested();

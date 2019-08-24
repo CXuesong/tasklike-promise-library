@@ -1,3 +1,8 @@
+/**
+ * @module
+ * Contains common utility functions for `Promise`.
+ */
+/** */
 import { ICancellationToken, PromiseCancelledError } from "./primitives/cancellation";
 import { PromiseResolutionSource } from "./primitives/promiseResolutionSource";
 
@@ -8,6 +13,7 @@ const _yieldedPromise = Promise.resolve();
  * @param milliseconds non-negative time in milliseconds to wait before the returned `Promise` resolves.
  * @param cancellationToken a token used to cancel the returned `Promise`.
  * @see {@link yielded}
+ * @todo make this function also works in nodejs.
  */
 export function delay(milliseconds: number, cancellationToken?: ICancellationToken): Promise<void> {
     if (milliseconds < 0) {
