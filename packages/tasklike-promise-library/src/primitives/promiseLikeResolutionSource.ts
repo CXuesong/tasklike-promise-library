@@ -100,42 +100,46 @@ class SynchronousPromiseLike<TPrev, TNext> implements IConfigurablePromiseLike<T
     }
     // Note: TNext | PromiseLike<TNext> is only used when TPrev == TNext
     public $__int__fulfill(prevResult: TPrev | TNext | PromiseLike<TNext>) {
-        if (Array.isArray(this.next)) {
-            try {
-                if (this._onfulfilled) {
-                    // fulfill current callback
-                    const result = this._onfulfilled(prevResult as TPrev);
-                    // notify next PromiseLike(s)
-                    this.fulfillNext(result);
-                } else {
-                    this.fulfillNext(prevResult as TNext);
-                }
-            } catch (error) {
-                // Error raised while executing onfulfilled callback.
-                // Next PromiseLikes should be rejected.
-                if (this._onrejected) {
-                    this.rejectNext(error);
-                }
+        if (typeof this.next === "string") {
+            console.error("Settled PromiseLike should not be resolved furthermore.", this.next);
+            return;
+        }
+        try {
+            if (this._onfulfilled) {
+                // fulfill current callback
+                const result = this._onfulfilled(prevResult as TPrev);
+                // notify next PromiseLike(s)
+                this.fulfillNext(result);
+            } else {
+                this.fulfillNext(prevResult as TNext);
+            }
+        } catch (error) {
+            // Error raised while executing onfulfilled callback.
+            // Next PromiseLikes should be rejected.
+            if (this._onrejected) {
+                this.rejectNext(error);
             }
         }
     }
     public $__int__reject(reason: unknown) {
-        if (Array.isArray(this.next)) {
-            try {
-                if (this._onrejected) {
-                    const result = this._onrejected(reason);
-                    this.fulfillNext(result);
-                } else {
-                    this.rejectNext(reason);
-                }
-            } catch (error) {
-                // Error raised while executing onrejected callback.
-                // Next PromiseLikes should be rejected.
-                if (this._onrejected) {
-                    this.rejectNext(error);
-                } else {
-                    console.error("Uncaught SynchronousPromiseLike rejection: %o", error);
-                }
+        if (typeof this.next === "string") {
+            console.error("Settled PromiseLike should not be resolved furthermore.", this.next);
+            return;
+        }
+        try {
+            if (this._onrejected) {
+                const result = this._onrejected(reason);
+                this.fulfillNext(result);
+            } else {
+                this.rejectNext(reason);
+            }
+        } catch (error) {
+            // Error raised while executing onrejected callback.
+            // Next PromiseLikes should be rejected.
+            if (this._onrejected) {
+                this.rejectNext(error);
+            } else {
+                console.error("Uncaught SynchronousPromiseLike rejection: %o", error);
             }
         }
     }
