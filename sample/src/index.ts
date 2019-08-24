@@ -171,7 +171,7 @@ async function demoRequestAnimationFrameAsync(panel: HTMLElement, ct?: ICancella
     let vx = 200, vy = 200;
     let ax = 0, ay = 150;
     let frameCounter = 0;
-    while (ct && !ct.isCancellationRequested) {
+    while (!ct || !ct.isCancellationRequested) {
         const context = await requestAnimationFrameAsync(ct);
         // Now we are inside requestAnimationFrame callback.
         const frameDuration = context.time - prevTime;

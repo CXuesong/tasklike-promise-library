@@ -1,3 +1,11 @@
+/**
+ * @module
+ * Provides `PromiseLike` that can be resolved from outside.
+ * @see {@link IConfigurablePromiseLike}
+ * @see {@link PromiseResolutionSource}
+ */
+
+ /** */
 import { PromiseCancelledError } from "./cancellation";
 import { PromiseResolutionSource } from "./promiseResolutionSource";
 

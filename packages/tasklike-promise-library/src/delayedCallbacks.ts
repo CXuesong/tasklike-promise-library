@@ -3,13 +3,31 @@
  * Contains adapter functions that allows you to switch into another context when you subscribe the returned `PromiseLike`s.
  * For example, in async functions, if you want to execute part of your logic inside an
  * [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame),
- * you may now use
+ * you may now use a simple loop inside the asynchronous function.
  * ```ts
+ * import { ICancellationToken, requestAnimationFrameAsync } from "tasklike-promise-library";
+ * 
  * async function playAnimation(cancellationToken?: ICancellationToken): Promise<void> {
  *     cancellationToken && cancellationToken.throwIfCancellationRequested();
- *     while (true) {
+ *     let prevTime = performance.now();
+ *     let currentWidth = 0;
+ *     const panel = document.querySelector("div.panel");
+ *     while (!cancellationToken || !cancellationToken.isCancellationRequested) {
  *         const animationFrame = await requestAnimationFrameAsync(cancellationToken);
- *         // TBC.
+ *         // From now on, we are inside RAF callback.
+ *         // `animationFrame` contains the information passed from RAF callback,
+ *         // basically, the start time of the animation frame.
+ *         // Make some animation here.
+ *         const frameDuration = animationFrame.time - prevTime;
+ *         // Let the width of .panel increase by 10 pixel/sec.
+ *         currentWidth += frameDuration * 10 * frameDuration / 1000;
+ *         panel.styles.with = Math.round(currentWidth) + "px";
+ *         prevTime = animationFrame.time;
+ *         // End of RAF callback.
+ *         // (More precisely, the callback stop at the next `await requestAnimationFrameAsync` expression.)
+ *         // The next `await requestAnimationFrameAsync` expression will let us enter another RAF callback.
+ *         // To exit the current RAF callback and enter another arbitrary asynchronous callback in the same async function,
+ *         // Use `yielded()` or `delay(0)` from `"common"` module.
  *     }
  * }
  * ```
@@ -109,12 +127,15 @@ interface IWindowExp {
 }
 
 /**
- * @experimental
  * Gets a `PromiseLike` that resolves inside `window.requestIdleCallback` callback.
+ * It basically executes the callback when the JavaScript event loop is idle, or the specified timeout has reached.
  * @param options options passed into `requestIdleCallback` function.
  * @param cancellationToken a token used to cancel the timeout with `window.cancelIdleCallback`.
  * @returns a `PromiseLike` that resolves inside `window.requestIdleCallback` callback.
  * Resolved value contains requestIdleCallback context.
+ * @experimental Underlying `requestIdleCallback` function is an experimental feature.
+ * See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) for more information
+ * on it compatibility.
  */
 export function requestIdleCallbackAsync(
     options?: IRequestIdleCallbackOptions,

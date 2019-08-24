@@ -1,12 +1,20 @@
+/**
+ * @module
+ * Provides `Promise` that can be resolved from outside.
+ * @see {@link PromiseResolutionSource}
+ */
+
+/** */
 import { PromiseCancelledError } from "./cancellation";
 
 /**
- * Resolves or rejects a {@link Promise} from outside of it.
+ * Resolves or rejects a `Promise` from outside of it.
  * 
  * This class is similar to `Deferred` but it explicitly separates
  * the promise and its control side into two different objects.
  * 
  * @typeparam T type of the promise resolution result.
+ * @see {@link PromiseLikeResolutionSource}
  */
 export class PromiseResolutionSource<T = void> {
     private _promise: Promise<T> | undefined;
