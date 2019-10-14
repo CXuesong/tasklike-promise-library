@@ -58,16 +58,23 @@ export class EventEmitter<T = void> {
      */
     public raise(arg: T): void {
         let current = this.head;
+        const handlers: [ICallbackChainItem<T>['callback'], boolean][] = [];
         let resolvedPromise: undefined | Promise<T>;
+        // Pass 1: freeze event handlers to be called.
         while (current) {
-            if (current.isAsync) {
+            handlers.push([current.callback, !!current.isAsync]);
+            current = current.next;
+        }
+        // Pass 2: call event handlers.
+        for (const [handler, isAsync] of handlers) {
+            if (isAsync) {
                 if (!resolvedPromise) {
                     resolvedPromise = Promise.resolve(arg);
                 }
-                resolvedPromise.then(current.callback);
+                resolvedPromise.then(handler);
+            } else {
+                handler(arg);
             }
-            current.callback(arg);
-            current = current.next;
         }
     }
     /**
