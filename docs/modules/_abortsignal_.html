@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;primitives/disposable&quot; | tasklike-promise-library</title>
+	<title>&quot;abortSignal&quot; | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,66 +54,127 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
+					<a href="_abortsignal_.html">&quot;abortSignal&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;primitives/disposable&quot;</h1>
+			<h1>External module &quot;abortSignal&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>module</dt>
+						<dd><p>This module contains interoperability with DOM <code>AbortSignal</code> and <code>AbortSignal</code>-like objects.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-kind-icon">IDisposable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_abortsignal_.html#adaptableabortsignallike" class="tsd-kind-icon">Adaptable<wbr>Abort<wbr>Signal<wbr>Like</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_primitives_disposable_.html#combinedisposable" class="tsd-kind-icon">combine<wbr>Disposable</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_abortsignal_.html#abortsignalfromcancellationtoken" class="tsd-kind-icon">abort<wbr>Signal<wbr>From<wbr>Cancellation<wbr>Token</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_abortsignal_.html#cancellationtokenfromabortsignal" class="tsd-kind-icon">cancellation<wbr>Token<wbr>From<wbr>Abort<wbr>Signal</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="adaptableabortsignallike" class="tsd-anchor"></a>
+					<h3>Adaptable<wbr>Abort<wbr>Signal<wbr>Like</h3>
+					<div class="tsd-signature tsd-kind-icon">Adaptable<wbr>Abort<wbr>Signal<wbr>Like<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AbortSignal</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"aborted"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"addEventListener"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/abortSignal.ts#L107">abortSignal.ts:107</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents an <code>AbortSignal</code>-like object with basic abort state and subscribable abort event.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="combinedisposable" class="tsd-anchor"></a>
-					<h3>combine<wbr>Disposable</h3>
+					<a name="abortsignalfromcancellationtoken" class="tsd-anchor"></a>
+					<h3>abort<wbr>Signal<wbr>From<wbr>Cancellation<wbr>Token</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">combine<wbr>Disposable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>disposables<span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+						<li class="tsd-signature tsd-kind-icon">abort<wbr>Signal<wbr>From<wbr>Cancellation<wbr>Token<span class="tsd-signature-symbol">(</span>cancellationToken<span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AbortSignal</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/primitives/disposable.ts#L19">primitives/disposable.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/abortSignal.ts#L81">abortSignal.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Combines <a href="../interfaces/_primitives_disposable_.idisposable.html">IDisposable</a> instances.</p>
+									<p>Gets an <code>AbortSignal</code> from <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>disposables: <a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>cancellationToken: <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>0, 1, or more instances to be combined.</p>
+										<p>the source cancellation token.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
-							<p>an <a href="../interfaces/_primitives_disposable_.idisposable.html">IDisposable</a> that disposes the given instances when <a href="../interfaces/_primitives_disposable_.idisposable.html#dispose">IDisposable.dispose</a> is called.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AbortSignal</span></h4>
+							<p>a DOM <code>AbortSignal</code> instance,
+								or an <code>AbortSignal</code>-like adapter provided by TPL if there is no native <code>AbortSignal</code>
+							and <code>AbortController</code> available in the global environment.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="cancellationtokenfromabortsignal" class="tsd-anchor"></a>
+					<h3>cancellation<wbr>Token<wbr>From<wbr>Abort<wbr>Signal</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">cancellation<wbr>Token<wbr>From<wbr>Abort<wbr>Signal<span class="tsd-signature-symbol">(</span>abortSignal<span class="tsd-signature-symbol">: </span><a href="_abortsignal_.html#adaptableabortsignallike" class="tsd-signature-type">AdaptableAbortSignalLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/abortSignal.ts#L115">abortSignal.ts:115</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a> from the specified <code>AbortSignal</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>abortSignal: <a href="_abortsignal_.html#adaptableabortsignallike" class="tsd-signature-type">AdaptableAbortSignalLike</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an abort signal that will cancel the returned <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html">ICancellationToken</a> upon <code>abort</code> event.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -125,7 +186,7 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_abortsignal_.html">"abort<wbr>Signal"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -143,7 +204,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_primitives_cancellation_.html">"primitives/cancellation"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_primitives_disposable_.html">"primitives/disposable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -165,11 +226,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_primitives_disposable_.idisposable.html" class="tsd-kind-icon">IDisposable</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="_abortsignal_.html#adaptableabortsignallike" class="tsd-kind-icon">Adaptable<wbr>Abort<wbr>Signal<wbr>Like</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_primitives_disposable_.html#combinedisposable" class="tsd-kind-icon">combine<wbr>Disposable</a>
+						<a href="_abortsignal_.html#abortsignalfromcancellationtoken" class="tsd-kind-icon">abort<wbr>Signal<wbr>From<wbr>Cancellation<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_abortsignal_.html#cancellationtokenfromabortsignal" class="tsd-kind-icon">cancellation<wbr>Token<wbr>From<wbr>Abort<wbr>Signal</a>
 					</li>
 				</ul>
 			</nav>
