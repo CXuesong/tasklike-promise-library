@@ -6,8 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --build .",
-    "watch": "tsc --watch -p .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tslint -p .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc --watch -p ."
   },
   "repository": {
     "type": "git",

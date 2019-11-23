@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --production"
+    "build": "webpack --production",
+    "lint": "tslint -p ."
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^5.0.0",

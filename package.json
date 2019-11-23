@@ -3,6 +3,7 @@
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
   "scripts": {
     "build": "yarn workspaces run build",
+    "lint": "yarn workspaces run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CXuesong",
