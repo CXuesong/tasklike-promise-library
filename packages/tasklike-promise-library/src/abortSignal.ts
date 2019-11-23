@@ -1,3 +1,8 @@
+/**
+ * @module
+ * This module contains interoperability with DOM `AbortSignal` and `AbortSignal`-like objects.
+ */
+/** */
 import { CancellationTokenSource, ICancellationToken, IDisposable } from "./primitives";
 
 type OnAbortEventListener = (this: AbortSignal, ev: Event) => any;
@@ -67,8 +72,11 @@ class CancellationTokenAbortSignalAdapter implements AbortSignal {
 let abortSignalCache: WeakMap<ICancellationToken, AbortSignal> | undefined;
 
 /**
- * Gets an {@link AbortSignal} adapter from {@link ICancellationToken}.
+ * Gets an `AbortSignal` from {@link ICancellationToken}.
  * @param cancellationToken the source cancellation token.
+ * @returns a DOM `AbortSignal` instance,
+ *  or an `AbortSignal`-like adapter provided by TPL if there is no native `AbortSignal`
+ *  and `AbortController` available in the global environment.
  */
 export function abortSignalFromCancellationToken(cancellationToken: ICancellationToken): AbortSignal {
     if (abortSignalCache) {
@@ -77,23 +85,34 @@ export function abortSignalFromCancellationToken(cancellationToken: ICancellatio
     } else if (typeof WeakMap === "function") {
         abortSignalCache = new WeakMap();
     }
-    const s = new CancellationTokenAbortSignalAdapter(cancellationToken);
+    let s: AbortSignal | undefined;
+    if (typeof AbortController === "function") {
+        const ac = new AbortController();
+        if (cancellationToken.isCancellationRequested) {
+            ac.abort();
+        } else {
+            cancellationToken.subscribe(() => ac.abort());
+        }
+        s = ac.signal;
+    } else {
+        s = new CancellationTokenAbortSignalAdapter(cancellationToken);
+    }
     if (abortSignalCache) abortSignalCache.set(cancellationToken, s);
     return s;
 }
 
 /**
- * Represents a {@link AbortSignal}-like object with basic abort state and subscribable abort event.
+ * Represents an `AbortSignal`-like object with basic abort state and subscribable abort event.
  */
 export type AdaptableAbortSignalLike = Pick<AbortSignal, "aborted" | "addEventListener">;
 
 let cancellationTokenCache: WeakMap<AdaptableAbortSignalLike, CancellationTokenSource> | undefined;
 
 /**
- * Gets an {@link ICancellationToken} from the specified {@link AbortSignal}.
+ * Gets an {@link ICancellationToken} from the specified `AbortSignal`.
  * @param abortSignal an abort signal that will cancel the returned {@link ICancellationToken} upon `abort` event.
  */
-export function cancellationTokenFromAbortSignal(abortSignal: AdaptableAbortSignalLike): ICancellationToken | undefined {
+export function cancellationTokenFromAbortSignal(abortSignal: AdaptableAbortSignalLike): ICancellationToken {
     if (cancellationTokenCache) {
         const c = cancellationTokenCache.get(abortSignal);
         if (c) return c.token;
