@@ -20,6 +20,7 @@ export class EventEmitter<T = void> {
      * @param thisArg provides `this` value for the `listener` callback.
      */
     public addListener(listener: (this: undefined, arg: T) => void, isAsync?: boolean, thisArg?: undefined): IDisposable;
+    public addListener<TThis>(listener: (this: TThis, arg: T) => void, isAsync: boolean, thisArg: TThis): IDisposable;
     public addListener<TThis>(listener: (this: TThis, arg: T) => void, isAsync: boolean, thisArg: TThis): IDisposable {
         let item: ICallbackChainItem<T> | undefined = { prev: this.tail, callback: listener.bind(thisArg), isAsync };
         if (!this.head) {
@@ -58,7 +59,7 @@ export class EventEmitter<T = void> {
      */
     public raise(arg: T): void {
         let current = this.head;
-        const handlers: [ICallbackChainItem<T>['callback'], boolean][] = [];
+        const handlers: [ICallbackChainItem<T>["callback"], boolean][] = [];
         let resolvedPromise: undefined | Promise<T>;
         // Pass 1: freeze event handlers to be called.
         while (current) {
