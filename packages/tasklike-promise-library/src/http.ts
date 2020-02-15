@@ -37,6 +37,8 @@ export interface IRequestParams {
 export interface IMutableHttpResponse {
     statusCode: number;
     statusText: string;
+    getHeader(headerName: string): string | null;
+    body: any;
     isSuccessfulStatusCode: boolean;
     ensureSuccessfulStatusCode(): void;
 }
@@ -73,6 +75,12 @@ class XhrResponse implements IXhrResponse {
     public constructor(public readonly xhr: XMLHttpRequest) {
         console.assert(xhr);
     }
+    public getHeader(headerName: string): string | null {
+        return this.xhr.getResponseHeader(headerName);
+    }
+    public get body(): any {
+        return this.xhr.response;
+    }
     public ensureSuccessfulStatusCode() {
         if (!this.isSuccessfulStatusCode) {
             throw new HttpRequestError(`The HTTP response code ${this.statusCode} indicates failure.`);
@@ -106,7 +114,7 @@ export function sendRequest(
     }
     if (request.headers) {
         for (const name in request.headers) {
-            if (Object.prototype.hasOwnProperty.call(request.headers, name)) {
+            if (request.headers.hasOwnProperty(name)) {
                 xhr.setRequestHeader(name, request.headers[name]);
             }
         }

@@ -106,10 +106,10 @@ async function demoHttp(panel: HTMLElement, ct?: ICancellationToken) {
         try {
             const response = await sendRequest(request, ct);
             lastLine.innerText += " " + response.statusCode + " " + response.statusText;
-            appendLine(panel, "Content-Type: " + response.xhr.getResponseHeader("Content-Type"));
+            appendLine(panel, "Content-Type: " + response.getHeader("Content-Type"));
             const bodyContainer = document.createElement("pre");
             bodyContainer.classList.add("http-response-body");
-            bodyContainer.innerText = response.xhr.responseText;
+            bodyContainer.innerText = response.body;
             panel.appendChild(bodyContainer);
             lastLine = appendLine(panel, "ensureSuccessfulStatusCode…");
             response.ensureSuccessfulStatusCode();
