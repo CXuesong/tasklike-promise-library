@@ -95,6 +95,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#body" class="tsd-kind-icon">body</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#issuccessfulstatuscode" class="tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#statuscode" class="tsd-kind-icon">status<wbr>Code</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#statustext" class="tsd-kind-icon">status<wbr>Text</a></li>
@@ -104,6 +105,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#ensuresuccessfulstatuscode" class="tsd-kind-icon">ensure<wbr>Successful<wbr>Status<wbr>Code</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_http_.imutablehttpresponse.html#getheader" class="tsd-kind-icon">get<wbr>Header</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,12 +114,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="body" class="tsd-anchor"></a>
+					<h3>body</h3>
+					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L41">packages/tasklike-promise-library/src/http.ts:41</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="issuccessfulstatuscode" class="tsd-anchor"></a>
 					<h3>is<wbr>Successful<wbr>Status<wbr>Code</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/http.ts#L40">http.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L42">packages/tasklike-promise-library/src/http.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/http.ts#L38">http.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L38">packages/tasklike-promise-library/src/http.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -137,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/http.ts#L39">http.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L39">packages/tasklike-promise-library/src/http.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -154,10 +166,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/7d9b64b/packages/tasklike-promise-library/src/http.ts#L41">http.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L43">packages/tasklike-promise-library/src/http.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getheader" class="tsd-anchor"></a>
+					<h3>get<wbr>Header</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Header<span class="tsd-signature-symbol">(</span>headerName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/76c74bc/packages/tasklike-promise-library/src/http.ts#L40">packages/tasklike-promise-library/src/http.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>headerName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
 						</li>
 					</ul>
 				</section>
@@ -170,40 +208,40 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_abortsignal_.html">"abort<wbr>Signal"</a>
+						<a href="../modules/_abortsignal_.html">&quot;abort<wbr>Signal&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_common_.html">"common"</a>
+						<a href="../modules/_common_.html">&quot;common&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_delayedcallbacks_.html">"delayed<wbr>Callbacks"</a>
+						<a href="../modules/_delayedcallbacks_.html">&quot;delayed<wbr>Callbacks&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_http_.html">"http"</a>
+						<a href="../modules/_http_.html">&quot;http&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_cancellation_.html">"primitives/cancellation"</a>
+						<a href="../modules/_primitives_cancellation_.html">&quot;primitives/cancellation&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_disposable_.html">"primitives/disposable"</a>
+						<a href="../modules/_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_errors_.html">"primitives/errors"</a>
+						<a href="../modules/_primitives_errors_.html">&quot;primitives/errors&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_eventemitter_.html">"primitives/event<wbr>Emitter"</a>
+						<a href="../modules/_primitives_eventemitter_.html">&quot;primitives/event<wbr>Emitter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_index_.html">"primitives/index"</a>
+						<a href="../modules/_primitives_index_.html">&quot;primitives/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_promiselikeresolutionsource_.html">"primitives/promise<wbr>Like<wbr>Resolution<wbr>Source"</a>
+						<a href="../modules/_primitives_promiselikeresolutionsource_.html">&quot;primitives/promise<wbr>Like<wbr>Resolution<wbr>Source&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_primitives_promiseresolutionsource_.html">"primitives/promise<wbr>Resolution<wbr>Source"</a>
+						<a href="../modules/_primitives_promiseresolutionsource_.html">&quot;primitives/promise<wbr>Resolution<wbr>Source&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -218,6 +256,9 @@
 						<a href="_http_.imutablehttpresponse.html" class="tsd-kind-icon">IMutable<wbr>Http<wbr>Response</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_http_.imutablehttpresponse.html#body" class="tsd-kind-icon">body</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_http_.imutablehttpresponse.html#issuccessfulstatuscode" class="tsd-kind-icon">is<wbr>Successful<wbr>Status<wbr>Code</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -228,6 +269,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_http_.imutablehttpresponse.html#ensuresuccessfulstatuscode" class="tsd-kind-icon">ensure<wbr>Successful<wbr>Status<wbr>Code</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_http_.imutablehttpresponse.html#getheader" class="tsd-kind-icon">get<wbr>Header</a>
 							</li>
 						</ul>
 					</li>
