@@ -37,7 +37,16 @@ export interface IRequestParams {
 export interface IMutableHttpResponse {
     statusCode: number;
     statusText: string;
-    getHeader(headerName: string): string | null;
+    /**
+     * Gets the response header value by name.
+     * If there are multiple values with the same header name,
+     * they will be joined with a comma and a space (`, `).
+     */
+    getHeaderValue(headerName: string): string | null;
+    /**
+     * Gets the response header values by name.
+     */
+    getHeaderValues(headerName: string): string[] | null;
     body: any;
     isSuccessfulStatusCode: boolean;
     ensureSuccessfulStatusCode(): void;
@@ -75,8 +84,13 @@ class XhrResponse implements IXhrResponse {
     public constructor(public readonly xhr: XMLHttpRequest) {
         console.assert(xhr);
     }
-    public getHeader(headerName: string): string | null {
+    public getHeaderValue(headerName: string): string | null {
         return this.xhr.getResponseHeader(headerName);
+    }
+    public getHeaderValues(headerName: string): string[] | null {
+        const value = this.xhr.getResponseHeader(headerName);
+        if (value == null) return null;
+        return value.split(", ");
     }
     public get body(): any {
         return this.xhr.response;
