@@ -8,6 +8,7 @@ const config: webpack.Configuration = {
   mode: "development",
   entry: "./src/index.ts",
   devtool: "inline-source-map",
+  // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/issues/43232
   devServer: {
     contentBase: __dirname,
     compress: true,
@@ -31,7 +32,7 @@ const config: webpack.Configuration = {
       "./index.html",
       "./index.css",
       "./tsconfig.json"   // We need this one for XHR payload.
-    ]),
+    ]) as any,
   ],
   optimization: {
     minimize: true,
