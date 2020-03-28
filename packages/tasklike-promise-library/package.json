@@ -1,6 +1,6 @@
 {
   "name": "tasklike-promise-library",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -8,7 +8,7 @@
   "exports": {
     "import": "dist/esm/index.js",
     "require": "dist/cjs/index.js",
-    "./http":{
+    "./http": {
       "import": "dist/esm/http/index.js",
       "require": "dist/cjs/http/index.js"
     }
