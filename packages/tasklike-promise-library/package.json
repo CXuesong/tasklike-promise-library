@@ -28,10 +28,10 @@
   "homepage": "https://github.com/CXuesong/tasklike-promise-library#readme",
   "private": false,
   "devDependencies": {
-    "typescript": "^3.5.3"
+    "typescript": "^3.8.3"
   },
   "dependencies": {},
-  "browser":{
+  "browser": {
     "./dist/facades/http.js": "./dist/facades/browser/http.js"
   }
 }

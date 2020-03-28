@@ -12,7 +12,7 @@
     "deploy": "echo \"Be sure to run `yarn run build` before executing this script.\" && pause && gh-pages -d ./dist"
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1",
-    "typedoc": "^0.15.0"
+    "gh-pages": "^2.2.0",
+    "typedoc": "^0.17.3"
   }
 }
