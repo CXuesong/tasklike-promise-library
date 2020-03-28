@@ -1,8 +1,23 @@
-/*! ../../primitives */
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
 
-/*! ../../primitives/cancellation */
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
 
-/*! ../common/http */
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/*! ../primitives */
+
+/*! ../primitives/cancellation */
+
+/*! ./browser */
 
 /*! ./cancellation */
 
@@ -16,10 +31,6 @@
 
 /*! ./eventEmitter */
 
-/*! ./facades/common/http */
-
-/*! ./facades/http */
-
 /*! ./http */
 
 /*! ./primitives */
@@ -32,62 +43,96 @@
 
 /*! ./promiseResolutionSource */
 
+/*! exports provided: EventEmitter */
+
+/*! exports provided: HttpRequestError */
+
+/*! exports provided: HttpRequestError, XhrResponse, sendRequest */
+
+/*! exports provided: PromiseCancelledError, CancellationTokenSource */
+
+/*! exports provided: PromiseCancelledError, CancellationTokenSource, combineDisposable, setInnerError, AggregateError, EventEmitter, PromiseResolutionSource, PromiseLikeResolutionSource */
+
+/*! exports provided: PromiseLikeResolutionSource */
+
+/*! exports provided: PromiseResolutionSource */
+
+/*! exports provided: XhrResponse, sendRequest */
+
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+
+/*! exports provided: combineDisposable */
+
+/*! exports provided: delay, yielded, fromResolved, fromRejected, fromCancelled */
+
+/*! exports provided: delay, yielded, fromResolved, fromRejected, fromCancelled, PromiseCancelledError, CancellationTokenSource, combineDisposable, setInnerError, AggregateError, EventEmitter, PromiseResolutionSource, PromiseLikeResolutionSource, HttpRequestError, XhrResponse, sendRequest, setTimeoutAsync, requestAnimationFrameAsync, requestIdleCallbackAsync */
+
+/*! exports provided: setInnerError, AggregateError */
+
+/*! exports provided: setTimeoutAsync, requestAnimationFrameAsync, requestIdleCallbackAsync */
+
 /*! no static exports found */
 
 /*! tasklike-promise-library */
+
+/*! tslib */
 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
 
-/*!*********************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/http.js ***!
-  \*********************************************************/
+/*!******************************************!*\
+  !*** ../node_modules/tslib/tslib.es6.js ***!
+  \******************************************/
 
-/*!**********************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/index.js ***!
-  \**********************************************************/
+/*!**************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/index.js ***!
+  \**************************************************************/
 
-/*!***********************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/common.js ***!
-  \***********************************************************/
+/*!***************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/common.js ***!
+  \***************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/http/index.js ***!
+  \*******************************************************************/
+
+/*!********************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/http/common.js ***!
+  \********************************************************************/
 
 /*!*********************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/delayedCallbacks.js ***!
+  !*** ../packages/tasklike-promise-library/dist/esm/http/browser.js ***!
   \*********************************************************************/
-
-/*!*********************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/index.js ***!
-  \*********************************************************************/
-
-/*!**********************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/errors.js ***!
-  \**********************************************************************/
-
-/*!************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/facades/common/http.js ***!
-  \************************************************************************/
 
 /*!*************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/facades/browser/http.js ***!
+  !*** ../packages/tasklike-promise-library/dist/esm/delayedCallbacks.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/index.js ***!
   \*************************************************************************/
 
 /*!**************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/disposable.js ***!
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/errors.js ***!
   \**************************************************************************/
 
-/*!****************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/cancellation.js ***!
-  \****************************************************************************/
+/*!******************************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/disposable.js ***!
+  \******************************************************************************/
 
-/*!****************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/eventEmitter.js ***!
-  \****************************************************************************/
+/*!********************************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/cancellation.js ***!
+  \********************************************************************************/
 
-/*!***************************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/promiseResolutionSource.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/eventEmitter.js ***!
+  \********************************************************************************/
 
 /*!*******************************************************************************************!*\
-  !*** ../packages/tasklike-promise-library/dist/primitives/promiseLikeResolutionSource.js ***!
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/promiseResolutionSource.js ***!
   \*******************************************************************************************/
+
+/*!***********************************************************************************************!*\
+  !*** ../packages/tasklike-promise-library/dist/esm/primitives/promiseLikeResolutionSource.js ***!
+  \***********************************************************************************************/

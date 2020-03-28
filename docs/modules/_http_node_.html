@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IXhrResponse | tasklike-promise-library</title>
+	<title>&quot;http/node&quot; | tasklike-promise-library</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_facades_browser_http_.html">&quot;facades/browser/http&quot;</a>
-				</li>
-				<li>
-					<a href="_facades_browser_http_.ixhrresponse.html">IXhrResponse</a>
+					<a href="_http_node_.html">&quot;http/node&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface IXhrResponse</h1>
+			<h1>Module &quot;http/node&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -69,54 +66,59 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the response of an XML HTTP request.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>module</dt>
+						<dd><p>Contains node-specific implementation of http functionality.</p>
+						</dd>
+					</dl>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="tsd-signature-symbol">{}</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">IXhrResponse</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/_facades_browser_http_.xhrresponse.html" class="tsd-signature-type">XhrResponse</a></li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_facades_browser_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_http_node_.inodehttpresponse.html" class="tsd-kind-icon">INode<wbr>Http<wbr>Response</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_http_node_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="xhr" class="tsd-anchor"></a>
-					<h3>xhr</h3>
-					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">XMLHttpRequest</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/b75236d/packages/tasklike-promise-library/src/facades/browser/http.ts#L14">packages/tasklike-promise-library/src/facades/browser/http.ts:14</a></li>
-						</ul>
-					</aside>
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="sendrequest" class="tsd-anchor"></a>
+					<h3>send<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Request<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_common_.irequestparams.html" class="tsd-signature-type">IRequestParams</a><span class="tsd-signature-symbol">&gt;</span>, cancellationToken<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_primitives_promiselikeresolutionsource_.iconfigurablepromiselike.html" class="tsd-signature-type">IConfigurablePromiseLike</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_node_.inodehttpresponse.html" class="tsd-signature-type">INodeHttpResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CXuesong/tasklike-promise-library/blob/5953a71/packages/tasklike-promise-library/src/http/node.ts#L48">packages/tasklike-promise-library/src/http/node.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>request: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_common_.irequestparams.html" class="tsd-signature-type">IRequestParams</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancellationToken: <a href="../interfaces/_primitives_cancellation_.icancellationtoken.html" class="tsd-signature-type">ICancellationToken</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_primitives_promiselikeresolutionsource_.iconfigurablepromiselike.html" class="tsd-signature-type">IConfigurablePromiseLike</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_http_node_.inodehttpresponse.html" class="tsd-signature-type">INodeHttpResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -127,71 +129,59 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_abortsignal_.html">&quot;abort<wbr>Signal&quot;</a>
+						<a href="_abortsignal_.html">&quot;abort<wbr>Signal&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_common_.html">&quot;common&quot;</a>
+						<a href="_common_.html">&quot;common&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_delayedcallbacks_.html">&quot;delayed<wbr>Callbacks&quot;</a>
+						<a href="_delayedcallbacks_.html">&quot;delayed<wbr>Callbacks&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_http_browser_.html">&quot;http/browser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_http_common_.html">&quot;http/common&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_http_index_.html">&quot;http/index&quot;</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/_facades_browser_http_.html">&quot;facades/browser/http&quot;</a>
+						<a href="_http_node_.html">&quot;http/node&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_facades_common_http_.html">&quot;facades/common/http&quot;</a>
+						<a href="_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_facades_http_.html">&quot;facades/http&quot;</a>
+						<a href="_primitives_cancellation_.html">&quot;primitives/cancellation&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_http_.html">&quot;http&quot;</a>
+						<a href="_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						<a href="_primitives_errors_.html">&quot;primitives/errors&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_cancellation_.html">&quot;primitives/cancellation&quot;</a>
+						<a href="_primitives_eventemitter_.html">&quot;primitives/event<wbr>Emitter&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_disposable_.html">&quot;primitives/disposable&quot;</a>
+						<a href="_primitives_index_.html">&quot;primitives/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_errors_.html">&quot;primitives/errors&quot;</a>
+						<a href="_primitives_promiselikeresolutionsource_.html">&quot;primitives/promise<wbr>Like<wbr>Resolution<wbr>Source&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_eventemitter_.html">&quot;primitives/event<wbr>Emitter&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_index_.html">&quot;primitives/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_promiselikeresolutionsource_.html">&quot;primitives/promise<wbr>Like<wbr>Resolution<wbr>Source&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_primitives_promiseresolutionsource_.html">&quot;primitives/promise<wbr>Resolution<wbr>Source&quot;</a>
+						<a href="_primitives_promiseresolutionsource_.html">&quot;primitives/promise<wbr>Resolution<wbr>Source&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="../classes/_facades_browser_http_.xhrresponse.html" class="tsd-kind-icon">Xhr<wbr>Response</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_http_node_.inodehttpresponse.html" class="tsd-kind-icon">INode<wbr>Http<wbr>Response</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_facades_browser_http_.ixhrresponse.html" class="tsd-kind-icon">IXhr<wbr>Response</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_facades_browser_http_.ixhrresponse.html#xhr" class="tsd-kind-icon">xhr</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_facades_browser_http_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a>
+						<a href="_http_node_.html#sendrequest" class="tsd-kind-icon">send<wbr>Request</a>
 					</li>
 				</ul>
 			</nav>
@@ -210,7 +200,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
