@@ -1,13 +1,21 @@
 /**
- * @internal
+ * @module
+ * Contains node-specific implementation of http functionality.
  */
 
 /** */
-import http from "http";
+import * as http from "http";
 import url from "url";
 import { IConfigurablePromiseLike, PromiseLikeResolutionSource } from "../primitives";
 import { ICancellationToken, PromiseCancelledError } from "../primitives/cancellation";
-import { HttpRequestError, INodeHttpResponse, IRequestParams } from "./common/http";
+import { HttpRequestError, IHttpResponse, IRequestParams } from "./common";
+
+/**
+ * Represents the response of a NodeJS HTTP request.
+ */
+export interface INodeHttpResponse extends IHttpResponse {
+    readonly message: http.IncomingMessage;
+}
 
 class NodeHttpResponse implements INodeHttpResponse {
     public readonly statusCode = this.message.statusCode ?? -1;

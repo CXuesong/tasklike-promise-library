@@ -2,10 +2,19 @@
   "name": "tasklike-promise-library",
   "version": "0.0.10",
   "description": "A .NET-Task-like Promise extension library for JavaScript.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "exports": {
+    "import": "dist/esm/index.js",
+    "require": "dist/cjs/index.js",
+    "./http":{
+      "import": "dist/esm/http/index.js",
+      "require": "dist/cjs/http/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc --build .",
+    "build": "tsc --build tsconfig.json && tsc --build tsconfig.cjs.json",
     "lint": "tslint -p .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc --watch -p ."
@@ -30,8 +39,11 @@
   "devDependencies": {
     "typescript": "^3.8.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tslib": "^1.11.1"
+  },
   "browser": {
-    "./dist/facades/http.js": "./dist/facades/browser/http.js"
+    "./dist/cjs/node.js": false,
+    "./dist/esm/node.js": false
   }
 }

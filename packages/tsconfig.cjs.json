@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
-        "module": "ES2015",
+        "module": "CommonJS",
         "strict": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "target": "ES5",
-        "moduleResolution": "node",
         "lib": [
             "es5",
             "es2015.promise",
@@ -20,6 +19,6 @@
         "declaration": true,
         "declarationMap": true,
         // Just in case the derived project forgot to set outDir.
-        "outDir": "./dist/esm"
+        "outDir": "./dist/cjs"
     }
 }
