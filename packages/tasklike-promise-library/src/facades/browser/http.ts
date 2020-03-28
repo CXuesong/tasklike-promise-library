@@ -27,7 +27,8 @@ export class XhrResponse implements IXhrResponse {
     public getHeaderValues(headerName: string): string[] | null {
         const value = this.xhr.getResponseHeader(headerName);
         if (value == null) return null;
-        return value.split(", ");
+        const result = value.split(",").map(v => v.trimLeft());
+        return result;
     }
     public get body(): any {
         return this.xhr.response;

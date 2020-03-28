@@ -33,7 +33,8 @@ class NodeHttpResponse implements INodeHttpResponse {
         const value = this.message.headers[headerName];
         if (value == null) return null;
         if (Array.isArray(value)) return value;
-        return value.split(", ");
+        const result = value.split(",").map(v => v.trimLeft());
+        return result;
     }
     public ensureSuccessfulStatusCode() {
         if (!this.isSuccessfulStatusCode) {
