@@ -30,5 +30,8 @@
   "devDependencies": {
     "typescript": "^3.5.3"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "browser":{
+    "./dist/facades/http.js": "./dist/facades/browser/http.js"
+  }
 }

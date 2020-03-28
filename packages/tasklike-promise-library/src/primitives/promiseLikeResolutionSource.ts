@@ -52,7 +52,7 @@ export class PromiseLikeResolutionSource<T = void> {
     }
     /**
      * Synchronously resolves the derived `PromiseLike` with the specified result.
-     * @param result the resolution result, or a `PromiseLike` that can be furtherly *resolved*.
+     * @param result the resolution result, or a `PromiseLike` that can be further *resolved*.
      * @returns `true` if the derived `PromiseLike` has just been *resolved*;
      * otherwise it means the `PromiseLike` has already been *settled* before.
      */
