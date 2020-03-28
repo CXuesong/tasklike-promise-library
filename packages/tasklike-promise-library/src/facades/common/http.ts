@@ -3,6 +3,8 @@
  */
 
 /** */
+import http from "http";
+
 export type HttpOutgoingHeaders = { [name: string]: string | number | string[] | undefined };
 
 export type HttpResponseBodyType = "buffer" | "arraybuffer" | "blob" | "document" | "json" | "text";
@@ -53,6 +55,23 @@ export interface IMutableHttpResponse {
  * This is the immutable counterpart of `IMutableHttpResponse`.
  */
 export type IHttpResponse = Readonly<IMutableHttpResponse>;
+
+// TS does not have browser shim support for now.
+// https://github.com/microsoft/TypeScript/issues/7753
+
+/**
+ * Represents the response of an XML HTTP request.
+ */
+export interface IXhrResponse extends IHttpResponse {
+    readonly xhr: XMLHttpRequest;
+}
+
+/**
+ * Represents the response of a NodeJS HTTP request.
+ */
+export interface INodeHttpResponse extends IHttpResponse {
+    readonly message: http.IncomingMessage;
+}
 
 /**
  * An error raises when an HTTP request fails due to network transportation

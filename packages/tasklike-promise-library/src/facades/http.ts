@@ -5,16 +5,9 @@
 /** */
 import http from "http";
 import url from "url";
-import { IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "../primitives";
+import { IConfigurablePromiseLike, PromiseLikeResolutionSource } from "../primitives";
 import { ICancellationToken, PromiseCancelledError } from "../primitives/cancellation";
-import { HttpRequestError, IHttpResponse, IRequestParams } from "./common/http";
-
-/**
- * Represents the response of a NodeJS HTTP request.
- */
-export interface INodeHttpResponse extends IHttpResponse {
-    readonly message: http.IncomingMessage;
-}
+import { HttpRequestError, INodeHttpResponse, IRequestParams } from "./common/http";
 
 class NodeHttpResponse implements INodeHttpResponse {
     public readonly statusCode = this.message.statusCode ?? -1;

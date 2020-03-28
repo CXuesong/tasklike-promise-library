@@ -5,14 +5,7 @@
 /** */
 import { IConfigurablePromiseLike, IDisposable, PromiseLikeResolutionSource } from "../../primitives";
 import { ICancellationToken, PromiseCancelledError } from "../../primitives/cancellation";
-import { HttpRequestError, IHttpResponse, IRequestParams } from "../common/http";
-
-/**
- * Represents the response of an XML HTTP request.
- */
-export interface IXhrResponse extends IHttpResponse {
-    readonly xhr: XMLHttpRequest;
-}
+import { HttpRequestError, IRequestParams, IXhrResponse } from "../common/http";
 
 export class XhrResponse implements IXhrResponse {
     public readonly statusCode = this.xhr.status;
