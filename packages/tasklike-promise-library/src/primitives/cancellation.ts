@@ -117,7 +117,7 @@ class CancellationToken implements ICancellationToken {
         return result;
     }
     public get promiseLike(): IConfigurablePromiseLike<void> {
-        if (this._cancellationPlrs) {
+        if (!this._cancellationPlrs) {
             this._cancellationPlrs = new PromiseLikeResolutionSource();
             if (this._cancelled) {
                 this._cancellationPlrs.tryResolve();
